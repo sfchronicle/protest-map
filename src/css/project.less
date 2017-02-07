@@ -1,0 +1,61 @@
+
+.logo-link {
+  padding-top: 9px;
+}
+
+.chatter {
+  max-width: 900px;
+  @media @mobile {
+    padding: 25px 15px;
+  }
+  // @media @tablet-horiz {
+  //   padding: 0 20px;
+  // }
+}
+
+.hed-wrapper {
+  margin-top: 80px;
+}
+
+
+svg {
+  pointer-events: all;
+}
+
+#map {
+  width: 80%;
+  height: 1000px;
+  margin: auto;
+  z-index: 0;
+  @media @tablet {
+    width: 100%;
+  }
+  @media @mobile {
+    width: 300px;
+    height: 250px;
+    margin: auto;
+  }
+}
+
+
+// leaflet styles --------------------------------------------------------------
+
+.leaflet-popup-content{
+  margin: 10px 5px;
+  width:auto;
+  max-width:240px;
+  font-family: @df-sans;
+}
+
+.leaflet-popup-content-wrapper {
+  border-radius:3px;
+  max-width:240px;
+  box-shadow: 0 1px 14px rgba(0,0,0,0.30);
+  // text-align:center;
+  padding-left:10px;
+  padding-right:10px;
+}
+
+.leaflet-control-zoom {
+  display: none;
+}
