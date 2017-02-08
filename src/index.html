@@ -23,14 +23,21 @@
 
     <div class="hed-wrapper">
       <div class="hed">Protests in the era of Trump</div>
-      <div class="chatter">The bay area erupted into protests as soon as President Trump was inaugurated and the protests show no sign of abating. We track the protests each day of Trump's presidency.</div>
+      <div class="chatter">The bay area erupted into protests as soon as President Trump was inaugurated and the protests show no sign of abating as the Executive Orders roll out and generate chaos. We track the protests each day of Trump's presidency.</div>
     </div>
+
+    <div class="day">Day: <span class="display-day"></span></div>
 
     <div class="map-container">
       <div id="map"></div>
+      <div class="protest-box"></div>
     </div>
 
     <%= t.include("partials/_footer.html") %>
+
+    <script>
+      var protestData = <%= JSON.stringify(json.Protests) %>
+    </script>
 
     <script src="app.js" async></script>
     <%= t.include("partials/_helloSFC.html") %>
