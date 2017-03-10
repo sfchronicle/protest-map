@@ -1,43 +1,114 @@
-@blue: #E32B2B;//#3C87CF;
+@red: #E32B2B;//#3C87CF;
+@gray-blue: #899D9E;
 
 body {
   font-family: @block-graphics;
 }
 
+.top-container {
+  position: absolute;
+  top: 0;
+  z-index: 80;
+  text-align: left;
+  width: 30%;
+  color: white;
+  padding: 30px;
+  @media @mobile {
+    position: relative;
+    width: 100%;
+    color: #333;
+    padding: 0;
+  }
+}
+
+.tooltip-map {
+  width: 300px;
+  position: absolute;
+  font-family: @block-graphics;
+  font-size: 14px;
+  background: white;
+  padding: 5px 10px;
+  border: @light-gray 1px solid;
+  visibility: hidden;
+  // @media @mobile {
+  //   display: none;
+  // }
+  .bold {
+    font-family: @med-graphics;
+  }
+  .desc {
+    font-size: 14px;
+    padding-top: 10px;
+  }
+}
+
 .map-container {
   position: relative;
-  .protest-box {
-    padding: 10px;
-    position: absolute;
-    top: 0;
-    right: 10%;
-    max-width: 300px;
-    background: white;
-    text-align: left;
-    font-size: 12px;
-    opacity: 0.8;
-    // .protest-day {
-    //   padding-bottom: 10px;
-    // }
-    .protest-name {
-      font-size: 14px;
-      font-family: @med-graphics;
-      border-bottom: 1px solid black;
-    }
-    .protest-damages {
-      padding-bottom: 10px;
-    }
-    .bold-class {
-      font-family: @med-graphics;
-    }
+}
+
+.protest-box {
+  padding: 60px 20px;
+  max-width: 900px;
+  margin: auto;
+  // position: absolute;
+  // top: 0;
+  // right: 10%;
+  // max-width: 30%;
+  @media @mobile {
+    clear: both;
+    right: 0;
+    position: relative;
+    padding: 0;
+    max-width: 90%;
+    width:90%;
+    margin: auto;
+  }
+  background: white;
+  text-align: left;
+  font-size: 14px;
+  // opacity: 0.8;
+  .day-hed {
+    font-size: 18px;
+    text-align: center;
+    font-family: @boldest-graphics;
+    // border-bottom: 2px solid @red;
+    color: @red;
+    // width: 200px;
+    // margin: auto;
+    padding-bottom: 30px;
+  }
+  // .protest-day {
+  //   padding-bottom: 10px;
+  // }
+  .protest-name {
+    font-size: 14px;
+    font-family: @med-graphics;
+    border-bottom: 1px solid black;
+  }
+  .protest-desc {
+    padding: 5px 0;
+  }
+  .protest-damages {
+    padding-bottom: 40px;
+  }
+  .bold-class {
+    font-family: @med-graphics;
   }
 }
 
 .day, .display-day {
   font-family: @boldest-graphics;
-  color: darken(@blue,10%);
+  color: darken(@red,10%);
   text-align: center;
-  padding-bottom: 30px;
+  padding: 30px 0;
+  // background: @light-gray;//lighten(@gray-blue,15%);
+  border-radius: 5px;
+}
+.day {
+  display: none;
+  &.show {
+    display: block;
+  }
 }
 
 .logo-link {
@@ -47,7 +118,7 @@ body {
 .chatter {
   max-width: 900px;
   @media @mobile {
-    padding: 25px 15px;
+    padding: 0 15px;
   }
   // @media @tablet-horiz {
   //   padding: 0 20px;
@@ -56,9 +127,15 @@ body {
 
 .hed-wrapper {
   margin-top: 80px;
+  @media @mobile {
+    margin-top: 0;
+  }
   .hed {
     font-family: @bold-graphics;
     font-size: 30px;
+    @media @mobile {
+      font-size: 25px;
+    }
   }
 }
 
@@ -68,16 +145,15 @@ svg {
 }
 
 #map {
-  width: 80%;
-  height: 500px;
+  // width: 80%;
+  height: 760px;
   margin: auto;
   z-index: 0;
   @media @tablet {
     width: 100%;
   }
   @media @mobile {
-    width: 300px;
-    height: 250px;
+    height: 300px;
     margin: auto;
   }
 }
@@ -103,4 +179,89 @@ svg {
 
 .leaflet-control-zoom {
   display: none;
+}
+
+// credits ---------------------------------------------------------------------
+
+.credits {
+  font-family: @block-graphics;
+  font-size: 14px;
+  .entry {
+    padding: 0;
+    padding-bottom: 15px;
+  }
+  @media @mobile {
+    padding: 0 20px;
+  }
+}
+
+.divider {
+  padding-top:30px;
+  width: 80%;
+  margin: auto;
+  border-bottom: 1px @dark-gray solid;
+  height: 2px;
+}
+
+// select styles ---------------------------------------------------------------
+
+.dropdown {
+  text-align: center;
+  font-size: 15px;
+  margin-top: 5px;
+
+  select {
+    margin-left: 3px;
+    width: 100px;
+  }
+}
+
+.controls {
+  padding-top: 10px;
+  text-align: center;
+  display: block;
+  padding-left: 20px;
+}
+.start, .pause {
+  border-radius: 7px;
+  display: inline-block;
+  font-size: 14px;
+  cursor: pointer;
+  color: darken(@gray-blue,20%);
+  background: @light-gray;
+  padding: 5px 10px 4px 10px;
+
+  &:hover {
+    background: darken(@gray-blue,20%);
+    color: white;
+  }
+
+  &.selected {
+    color: @black;
+    cursor: default;
+    background: darken(@gray-blue,20%);
+  }
+}
+
+.button {
+  // background: white;
+  border: 2px solid white;
+  color: white;
+  padding: 5px 20px;
+  margin: 20px auto;
+  text-align: center;
+  font-size: 16px;
+  font-family: @med-graphics;
+  border-radius: 5px;
+  width: 200px;
+  &:hover {
+    background: @dark-gray;
+    cursor: pointer;
+    // color: white;
+  }
+  &.selected {
+    color: white;
+    cursor: default;
+    background: @dark-gray;
+  }
 }

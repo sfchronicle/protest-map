@@ -128,5 +128,69 @@
     "Arrests": 0,
     "Descriptor": "Hundreds of Google employees at the tech giant's Mountain View headquarters Jan. 30 protested President Trump's executie order restricting immigration from seven predominantly Muslim countries.",
     "Link ": "http://www.cnbc.com/2017/01/30/google-employees-protest-trump.html"
+  },
+  {
+    "Location": "UC Berkeley",
+    "Lat": 37.869485,
+    "Lon": "-122.259118",
+    "Date": "Feb. 1",
+    "Day": 13,
+    "Numbers": "Hundreds",
+    "Size": 2,
+    "Damages": "$100,000 on Berkeley's campus, thousands more in Berkeley proper.",
+    "Arrests": 1,
+    "Descriptor": "Hundreds of protestors gathered at UC Berkeley to protest far-right provocateur (then with Breibart News) Milo Yiannopoulos' speech at the school. Masked anarchists tore down fences and smashed windows of the student center, forcing the event to be canceled in a violent protest."
+  },
+  {
+    "Location": "San Jose",
+    "Lat": 37.337614,
+    "Lon": "-121.886058",
+    "Date": "March 8",
+    "Day": 48,
+    "Numbers": "Thousands",
+    "Size": 3,
+    "Damages": "None",
+    "Arrests": 0,
+    "Descriptor": "Several thousand people gathered March 4 at San Jose's City Hall for a lunctime for a lunctime rally to kick off International Women's Day.",
+    "Link ": "http://www.bizjournals.com/sanjose/news/2017/03/08/day-without-a-woman-brown-bags-it-in-san-jose.html"
+  },
+  {
+    "Location": "UC Berkeley",
+    "Lat": 37.869485,
+    "Lon": 122.259118,
+    "Date": "March 8",
+    "Day": 48,
+    "Numbers": "Hundreds",
+    "Size": 2,
+    "Damages": "None",
+    "Arrests": 0,
+    "Descriptor": "On International Women's Day, a couple of hundred protestors gathered at UC Berkeley's Sproul Plaza to rally for abortion rights, among other issues.",
+    "Link ": "http://www.sfgate.com/news/article/A-Day-Without-a-Woman-rallies-kick-off-in-10986735.php"
+  },
+  {
+    "Location": "San Francisco ",
+    "Lat": 37.7749,
+    "Lon": "-122.4194",
+    "Date": "March 8",
+    "Day": 48,
+    "Numbers": "Hundreds",
+    "Size": 2,
+    "Damages": "None",
+    "Arrests": 0,
+    "Descriptor": "On International Women's Day — or \"A Day Without A Woman,\" as protestors called it — hundreds of women went on strike to protest sexism and gender inequalities in San Francisco March 8.",
+    "Link ": "http://www.sfgate.com/news/article/A-Day-Without-a-Woman-rallies-kick-off-in-10986735.php"
+  },
+  {
+    "Location": "Oakland",
+    "Lat": 37.8044,
+    "Lon": "-122.2711",
+    "Date": "March 8",
+    "Day": 48,
+    "Numbers": "Hundreds",
+    "Size": 2,
+    "Damages": "None",
+    "Arrests": 1,
+    "Descriptor": "On International Women's Day, hundreds of women March 8, joined by male supporters, marched through the streets of Oakland to rail against sexism and demand gender equity, among other causes.",
+    "Link ": "http://www.sfgate.com/bayarea/article/Women-s-Day-march-kicks-off-in-Oakland-10988400.php"
   }
 ]
