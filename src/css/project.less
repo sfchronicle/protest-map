@@ -5,20 +5,32 @@ body {
   font-family: @block-graphics;
 }
 
+#stick-ph {
+  display: none;
+}
+
+// #stick-me {
+.fixed-map {
+  position: fixed;
+  width: 100%;
+  z-index: 99;
+  left: 0;
+  top: 0;
+  z-index: -1;
+}
+
 .top-container {
   position: relative;
   top: 0;
   z-index: 80;
   text-align: left;
-  width: 30%;
+  width: 40%;
   color: white;
   padding: 30px;
   padding-bottom: 300px;
+  padding-top: 80px;
   @media @mobile {
-    position: relative;
-    width: 100%;
-    color: #333;
-    padding: 0;
+    display: none;
   }
 }
 
@@ -32,9 +44,6 @@ body {
   border: @light-gray 1px solid;
   visibility: hidden;
   z-index:40;
-  // @media @mobile {
-  //   display: none;
-  // }
   .bold {
     font-family: @med-graphics;
   }
@@ -55,45 +64,32 @@ body {
 
 .protest-box {
   position: relative;
-  // top: 760px;
-  // padding: 60px 20px;
   max-width: 700px;
   margin: auto;
-  // top: 760px;
-  // opacity: 0.9;
-  // z-index: ;
-  // position: absolute;
-  // top: 0;
-  // right: 10%;
-  // max-width: 30%;
   @media @mobile {
     clear: both;
     right: 0;
     position: relative;
     padding: 0;
+    // top: 200px;
     max-width: 90%;
     width:90%;
     margin: auto;
   }
-  // background: rgba(255,255,255,0.7);
   text-align: left;
   font-size: 14px;
-  // opacity: 0.8;
   .day-hed {
     font-size: 18px;
     text-align: center;
     font-family: @boldest-graphics;
-    // border-bottom: 2px solid @red;
     color: @red;
-    // width: 200px;
-    // margin: auto;
     padding: 30px 0;
-    background: rgba(255,255,255,0.5);
+    background: rgba(255,255,255,0.6);
     margin-top: 70px;
   }
   .protest-day {
     padding: 0px 20px;
-    background: rgba(255,255,255,0.5);
+    background: rgba(255,255,255,0.6);
   }
   .protest-name {
     font-size: 14px;
@@ -113,10 +109,12 @@ body {
 
 .day, .display-day {
   font-family: @boldest-graphics;
-  color: darken(@red,10%);
+  background: darken(@red,10%);
+  color: white;
   text-align: center;
-  padding: 30px 0;
-  // background: @light-gray;//lighten(@gray-blue,15%);
+  max-width: 400px;
+  padding: 20px 0;
+  margin: 20px auto;
   border-radius: 5px;
 }
 .day {
@@ -135,21 +133,29 @@ body {
   @media @mobile {
     padding: 0 15px;
   }
-  // @media @tablet-horiz {
-  //   padding: 0 20px;
-  // }
 }
 
 .hed-wrapper {
   margin-top: 80px;
   @media @mobile {
-    margin-top: 0;
+    margin-top: 40px;
   }
   .hed {
     font-family: @bold-graphics;
     font-size: 30px;
     @media @mobile {
       font-size: 25px;
+    }
+  }
+  &.desktop {
+    @media @mobile {
+      display: none;
+    }
+  }
+  &.mobile {
+    display: none;
+    @media @mobile {
+      display: block;
     }
   }
 }
@@ -164,17 +170,25 @@ body {
   position: fixed;
   height: 100%;
   width: 100%;
-  // width: 80%;
-  // height: 760px;
   margin: auto;
   z-index: 0;
   @media @tablet {
     width: 100%;
   }
   @media @mobile {
-    height: 300px;
+    position: relative;
+    height: 100vh;
     margin: auto;
-    top: 400px;
+    // top: 400px;
+  }
+}
+
+.instructions {
+  text-align: center;
+  padding-top: 50px;
+  font-size: 16px;
+  .fa {
+    font-size: 30px;
   }
 }
 
@@ -192,7 +206,6 @@ body {
   border-radius:3px;
   max-width:240px;
   box-shadow: 0 1px 14px rgba(0,0,0,0.30);
-  // text-align:center;
   padding-left:10px;
   padding-right:10px;
 }
@@ -237,6 +250,8 @@ body {
   select {
     margin-left: 3px;
     width: 100px;
+    font-family: @block-graphics;
+    font-size: 14px;
   }
 }
 
@@ -268,7 +283,6 @@ body {
 }
 
 .button {
-  // background: white;
   border: 2px solid white;
   color: white;
   padding: 5px 20px;
@@ -281,7 +295,6 @@ body {
   &:hover {
     background: @dark-gray;
     cursor: pointer;
-    // color: white;
   }
   &.selected {
     color: white;

@@ -3,13 +3,37 @@ var d3 = require('d3');
 
 // setting parameters for the center of the map and initial zoom level
 if (screen.width <= 480) {
-  var sf_lat = 37.85;
+  var sf_lat = 37.6;
   var sf_long = -122.43;
   var zoom_deg = 8;
 } else {
   var sf_lat = 37.7;
   var sf_long = -122.5;
   var zoom_deg = 10;
+}
+
+if (screen.width <= 480) {
+  console.log("are we getting here");
+  window.onscroll = function() {activate()};
+}
+
+function activate() {
+  var sticker = document.getElementById('stick-me');
+  var sticker_ph = document.getElementById('stick-ph');
+  var window_top = document.body.scrollTop;
+  var div_top = document.getElementById('stick-here').getBoundingClientRect().top + window_top;
+  // var long = document.getElementById('long');
+
+  if (window_top > div_top) {
+      sticker.classList.add('fixed-map');
+      $("#stick-ph").css("height", $("#map").height());
+      sticker_ph.style.display = 'block'; // puts in a placeholder for where sticky used to be for smooth scrolling
+      // long.style.display = 'inline-block';
+  } else {
+      sticker.classList.remove('fixed-map');
+      sticker_ph.style.display = 'none'; // removes placeholder
+      // long.style.display = 'none';
+  }
 }
 
 // fills in HTML for year as years toggle
@@ -125,7 +149,7 @@ var drawMap = function(dayData,current_day) {
     .style("stroke","#696969")
     .attr("r", function(d) {
       if (screen.width <= 480) {
-        return 7;
+        return d.Size*5;
       } else {
         return d.Size*10;
       }

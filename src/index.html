@@ -21,10 +21,19 @@
 
     <%= t.include("partials/_nav.html") %>
 
-    <div class="map-container">
-      <div id="map"></div>
+    <div class="hed-wrapper mobile">
+      <div class="hed">100 days of Trump, 100 days of protest</div>
+      <div class="chatter">The bay area erupted into protests as soon as President Trump was inaugurated and the protests show no sign of abating. We track the protests each day of Trump's presidency.</div>
     </div>
-    <div class="tooltip-map"></div>
+
+    <div id="stick-here"></div>
+    <div id="stick-me">
+      <div class="map-container">
+        <div id="map"></div>
+      </div>
+      <div class="tooltip-map"></div>
+    </div>
+    <div id="stick-ph"></div>
 
     <div class="top-container">
 
@@ -54,6 +63,11 @@
       <div class="button" id="seeall">See all protests</div>
 
       <div class="day show" id="day-box">Day <span class="display-day"></span></div>
+
+      <div class="instructions">Scroll for more information.
+        <div class="arrow"><i class="fa fa-angle-double-down" aria-hidden="true"></i></div>
+      </div>
+
     </div>
 
     <div class="protest-box">
