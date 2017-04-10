@@ -100,12 +100,12 @@ circle {
   max-width: 700px;
   margin: auto;
   @media @mobile {
-    clear: both;
-    right: 0;
-    position: relative;
-    padding: 0;
-    // top: 200px;
-    max-width: 90%;
+  //   clear: both;
+  //   right: 0;
+  //   position: relative;
+  //   padding: 0;
+  //   // top: 200px;
+  //   max-width: 90%;
     width:90%;
     margin: auto;
   }
@@ -178,8 +178,11 @@ circle {
   margin-top: 100px;
   color: @dark-gray-blue;
   @media @mobile {
-    margin-top: 45px;
+    margin-top: 0;
+    padding-top: 45px;
+    padding-bottom: 15px;
     color: darken(@gray-blue,25%);
+    background: rgba(255,255,255,0.8);
   }
   .hed {
     font-family: @bold-graphics;
@@ -217,11 +220,15 @@ body {
     width: 100%;
   }
   @media @mobile {
-    position: relative;
-    height: 100vh;
-    margin: auto;
-    // top: 400px;
+    top: 0;
+    z-index: -1;
   }
+  // @media @mobile {
+  //   position: relative;
+  //   height: 100vh;
+  //   margin: auto;
+  //   // top: 400px;
+  // }
 }
 
 .instructions {

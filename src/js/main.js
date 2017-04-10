@@ -3,7 +3,7 @@ var d3 = require('d3');
 
 // setting parameters for the center of the map and initial zoom level
 if (screen.width <= 480) {
-  var sf_lat = 37.6;
+  var sf_lat = 38.0;
   var sf_long = -122.23;
   var zoom_deg = 9;
 
@@ -17,9 +17,9 @@ if (screen.width <= 480) {
   var offset_top = 600;
 }
 
-if (screen.width <= 480) {
-  window.onscroll = function() {activate()};
-}
+// if (screen.width <= 480) {
+//   window.onscroll = function() {activate()};
+// }
 
 function activate() {
   var sticker = document.getElementById('stick-me');
