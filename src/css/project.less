@@ -9,6 +9,17 @@ body {
   display: none;
 }
 
+.mobile-only {
+  display: none;
+  @media @mobile {
+    display: block;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 20;
+  }
+}
+
 // #stick-me {
 .fixed-map {
   position: fixed;
