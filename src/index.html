@@ -22,14 +22,13 @@
     <%= t.include("partials/_nav.html") %>
 
     <div class="hed-wrapper mobile">
-      <div class="hed">100 days of Trump, 100 days of protest</div>
+      <div class="hed">Protest during the Trump presidency</div>
       <div class="chatter">The bay area erupted into protests as soon as President Trump was inaugurated and the protests show no sign of abating. We track the protests each day of Trump's presidency.</div>
     </div>
 
     <div id="stick-here"></div>
     <div id="stick-me">
       <div class="map-container">
-        <div class="day show mobile-only" id="day-box">Day <span class="display-day"></span></div>
         <div id="map"></div>
       </div>
       <div class="tooltip-map"></div>
@@ -39,51 +38,37 @@
     <div class="top-container">
 
       <div class="hed-wrapper">
-        <div class="hed">100 days of Trump, 100 days of protest</div>
+        <div class="hed">Protest during the Trump presidency</div>
         <div class="chatter">The bay area erupted into protests as soon as President Trump was inaugurated and the protests show no sign of abating. We track the protests each day of Trump's presidency.</div>
       </div>
-
-      <div class="dropdown">
-        Choose a day:
-        <select name="select">
-          <option selected="selected" disabled="disabled">--</option>
-          <% var prevDaySelect = 0; %>
-          <% json.Protests.forEach(function(d,ddx){ %>
-            <% if (prevDaySelect != d.Day) { %>
-              <option value= <%= d.Day %> > <%= d.Day %> </option>
-            <% } %>
-            <% prevDaySelect = d.Day; %>
-          <% }); %>
-        </select>
-
-        <div class="controls">
-          <div class="start selected"><i class="fa fa-play"></i></div>
-          <div class="pause"><i class="fa fa-pause"></i></div>
-        </div>
-      </div>
-      <div class="button" id="seeall">See all protests</div>
-
-      <div class="day show" id="day-box">Day <span class="display-day"></span></div>
-
-      <div class="instructions">Scroll for more information.
+      
+      <div class="instructions">Scroll to see the protests each day.
         <div class="arrow"><i class="fa fa-angle-double-down" aria-hidden="true"></i></div>
+
       </div>
 
     </div>
+    <div id="bottom-of-top"></div>
+
 
     <div class="protest-box">
     <% var prevDay = 0; %>
-    <% json.Protests.forEach(function(d){ %>
+    <div class="map-panel" id="mapday1"></div>
+    <% json.Protests.forEach(function(d,dIDX){ %>
       <% if (prevDay != d.Day) { %>
-        <div class="day-hed">Day <%=d.Day%>, <%=d.Date%></div>
+        <% if (d.Day > 1) { %>
+          </div>
+          <div class="map-panel" id="mapday<%=d.Day%>"></div>
+        <% } %>
+        <div class="day-panel" id="panel<%=d.Day%>"><div class="day-hed">Day <%=d.Day%>, <%=d.Date%></div>
       <% } %>
       <% prevDay = d.Day; %>
       <div class='protest-day'>
         <div class='protest-name'><%=d.Location%>, <%=d.Date%></div>
         <div class='protest-desc'><%=d.Descriptor%></div>
-        <div class='protest-numbers'><span class='bold-class'>Numbers: </span><%=d.Numbers%></div>
+        <!-- <div class='protest-numbers'><span class='bold-class'>Numbers: </span><%=d.Numbers%></div>
         <div class='protest-arrests'><span class='bold-class'>Arrests: </span><%=d.Arrests%></div>
-        <div class='protest-damages'><span class='bold-class'>Damages: </span><%=d.Damages%></div>
+        <div class='protest-damages'><span class='bold-class'>Damages: </span><%=d.Damages%></div> -->
       </div>
     <% }); %>
     </div>

@@ -4,16 +4,20 @@ var d3 = require('d3');
 // setting parameters for the center of the map and initial zoom level
 if (screen.width <= 480) {
   var sf_lat = 37.6;
-  var sf_long = -122.43;
-  var zoom_deg = 8;
+  var sf_long = -122.23;
+  var zoom_deg = 9;
+
+  var offset_top = 600;
+
 } else {
-  var sf_lat = 37.7;
+  var sf_lat = 37.6;
   var sf_long = -122.5;
   var zoom_deg = 10;
+
+  var offset_top = 600;
 }
 
 if (screen.width <= 480) {
-  console.log("are we getting here");
   window.onscroll = function() {activate()};
 }
 
@@ -119,6 +123,8 @@ g = svg.append("g");
 // draw bubbles
 var drawMap = function(dayData,current_day) {
 
+  console.log(dayData);
+
 	d3.select("svg").selectAll("circle").remove();
 	var svg = d3.select("#map").select("svg"),
 	g = svg.append("g");
@@ -190,76 +196,150 @@ var drawMap = function(dayData,current_day) {
     )
   }
 
+  if (current_day != 101){
+    var avgLat = 0, avgLon = 0;
+    dayData.forEach(function(day){
+      avgLat += +day["Lat"];
+      avgLon += +day["Lon"];
+    });
+    avgLat = avgLat/dayData.length-0.1;
+    avgLon = avgLon/dayData.length;
+
+    map.setView(new L.LatLng(avgLat, avgLon), map.getZoom(), {"animation": true});
+  } else {
+    map.setView(new L.LatLng(sf_lat, sf_long), map.getZoom(), {"animation": true});
   }
+  // map.panTo(new L.LatLng(40.737, -73.923));
+  console.log(dayData);
 
-// initialize to day 1
-var i = 0;
+}
 
-// set up looping
-var loop = null;
-var tick = function() {
-  var dayData = protestData.filter(function(d) {
-    return d.Day <= days[i]
+var dayData = protestData.filter(function(d) {
+    return d.Day <= 101
+});
+drawMap(dayData,101);
+
+var qsa = s => Array.prototype.slice.call(document.querySelectorAll(s));
+
+var i; var prevIDX = -1; var prevmapIDX = -1;
+$(window).scroll(function(){
+  var pos = $(this).scrollTop();
+  var pos_map_top = $('#bottom-of-top').offset().top;
+  if (pos < pos_map_top){
+    var dayData = protestData.filter(function(d) {
+        return d.Day <= 101
+    });
+    drawMap(dayData,101);
+    var prevmapIDX = -1;
+  }
+  qsa(".map-panel").forEach(function(map,mapIDX) {
+    var pos_map = $('#mapday'+days[mapIDX]).offset().top-150;
+    if ((pos > pos_map) && (mapIDX != prevmapIDX)) {
+      prevmapIDX = mapIDX;
+      var dayData = protestData.filter(function(d) {
+          return d.Day <= days[mapIDX]
+      });
+      drawMap(dayData,days[+mapIDX]);
+    }
   });
-  drawMap(dayData,days[i]);
-	updateDay(days[i],dates[i]);
-  // updateText(dayData);
-  i = (i + 1) % days.length;
-  loop = setTimeout(tick, i == 0 ? 1700 : 1000);
-};
+  qsa(".day-panel").forEach(function(day,dayIDX) {
+    // console.log(day);
+    var pos_panel = $('#panel'+days[dayIDX]).offset().top-offset_top;
+    if ((pos > pos_panel) && (dayIDX != prevIDX)) {
+      prevIDX = dayIDX;
+      var x=document.getElementsByClassName("day-panel");
+      for (i=0; i< x.length; i++) {
+        x[i].classList.remove("active");
+      }
+      day.classList.add("active");
 
-// start loop
-tick();
-var looping = true;
-
-var dropdown = document.querySelector("select");
-// if user picks the year, we update the selected mode and stop looping
-dropdown.addEventListener("change", function() {
-  document.querySelector("#seeall").classList.remove("selected");
-  document.querySelector(".start").classList.remove("selected");
-  document.querySelector(".pause").classList.add("selected");
-  looping = false;
-  // document.querySelector(".chart").classList.add("clickable");
-  clearTimeout(loop);
-  var dayData = protestData.filter(function(d) {
-    return d.Day == +dropdown.value;
+      // var x = document.getElementsByClassName("icon");
+      // for (i = 0; i < x.length; i++) {
+      //     x[i].style.color = "#696969";
+      // }
+      // var x = document.getElementsByClassName(panel.id+panel.key_value);
+      // for (i = 0; i < x.length; i++) {
+      //     x[i].style.color = "red";
+      // }
+      // var titles = document.getElementsByClassName("bold-class");
+      // for (i = 0; i < titles.length; i++) {
+      //   titles[i].classList.remove("active");
+      // }
+      // var targetDiv = document.getElementById("panelcontainer"+panel.id).getElementsByClassName("bold-class")[0];
+      // console.log(targetDiv);
+      // targetDiv.classList.add("active");
+    }
   });
-  drawMap(dayData,+dropdown.value);
-  var dateIDX = days.indexOf(+dropdown.value);
-  updateDay(dropdown.value,dates[dateIDX]);
-  // updateText(dayData);
 });
 
-document.querySelector(".start").addEventListener("click", function(e) {
-  document.querySelector("#seeall").classList.remove("selected");
-  if (looping) { return }
-  document.querySelector(".start").classList.add("selected");
-  document.querySelector(".pause").classList.remove("selected");
-  looping = true;
-  // document.querySelector(".chart").classList.remove("clickable");
-  dropdown.value = "--";
-  tick();
-  document.querySelector("#day-box").classList.add("show");
-})
-document.querySelector(".pause").addEventListener("click", function(e) {
-  document.querySelector("#seeall").classList.remove("selected");
-  if (!looping) { return }
-  document.querySelector(".start").classList.remove("selected");
-  document.querySelector(".pause").classList.add("selected");
-  looping = false;
-  // document.querySelector(".chart").classList.add("clickable");
-  clearTimeout(loop);
-})
-document.querySelector("#seeall").addEventListener("click", function(e) {
-  document.querySelector(".start").classList.remove("selected");
-  document.querySelector(".pause").classList.add("selected");
-  looping = false;
-  // document.querySelector(".chart").classList.add("clickable");
-  clearTimeout(loop);
-  var dayData = protestData.filter(function(d) {
-    return d.Day <= 100
-  });
-  drawMap(dayData,100);
-  document.querySelector("#day-box").classList.remove("show");
-  document.querySelector("#seeall").classList.add("selected");
-})
+// initialize to day 1
+// var i = 0;
+//
+// // set up looping
+// var loop = null;
+// var tick = function() {
+//   var dayData = protestData.filter(function(d) {
+//     return d.Day <= days[i]
+//   });
+//   drawMap(dayData,days[i]);
+// 	updateDay(days[i],dates[i]);
+//   // updateText(dayData);
+//   i = (i + 1) % days.length;
+//   loop = setTimeout(tick, i == 0 ? 1700 : 1000);
+// };
+
+// start loop
+// tick();
+// var looping = true;
+
+// var dropdown = document.querySelector("select");
+// // if user picks the year, we update the selected mode and stop looping
+// dropdown.addEventListener("change", function() {
+//   document.querySelector("#seeall").classList.remove("selected");
+//   document.querySelector(".start").classList.remove("selected");
+//   document.querySelector(".pause").classList.add("selected");
+//   looping = false;
+//   // document.querySelector(".chart").classList.add("clickable");
+//   clearTimeout(loop);
+//   var dayData = protestData.filter(function(d) {
+//     return d.Day == +dropdown.value;
+//   });
+//   drawMap(dayData,+dropdown.value);
+//   var dateIDX = days.indexOf(+dropdown.value);
+//   updateDay(dropdown.value,dates[dateIDX]);
+//   // updateText(dayData);
+// });
+//
+// document.querySelector(".start").addEventListener("click", function(e) {
+//   document.querySelector("#seeall").classList.remove("selected");
+//   if (looping) { return }
+//   document.querySelector(".start").classList.add("selected");
+//   document.querySelector(".pause").classList.remove("selected");
+//   looping = true;
+//   // document.querySelector(".chart").classList.remove("clickable");
+//   dropdown.value = "--";
+//   tick();
+//   document.querySelector("#day-box").classList.add("show");
+// })
+// document.querySelector(".pause").addEventListener("click", function(e) {
+//   document.querySelector("#seeall").classList.remove("selected");
+//   if (!looping) { return }
+//   document.querySelector(".start").classList.remove("selected");
+//   document.querySelector(".pause").classList.add("selected");
+//   looping = false;
+//   // document.querySelector(".chart").classList.add("clickable");
+//   clearTimeout(loop);
+// })
+// document.querySelector("#seeall").addEventListener("click", function(e) {
+//   document.querySelector(".start").classList.remove("selected");
+//   document.querySelector(".pause").classList.add("selected");
+//   looping = false;
+//   // document.querySelector(".chart").classList.add("clickable");
+//   clearTimeout(loop);
+//   var dayData = protestData.filter(function(d) {
+//     return d.Day <= 100
+//   });
+//   drawMap(dayData,100);
+//   document.querySelector("#day-box").classList.remove("show");
+//   document.querySelector("#seeall").classList.add("selected");
+// })

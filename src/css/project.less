@@ -1,5 +1,6 @@
 @red: #E32B2B;//#3C87CF;
 @gray-blue: #899D9E;
+@dark-gray-blue: #233738;//#3D5152;
 
 body {
   font-family: @block-graphics;
@@ -7,6 +8,12 @@ body {
 
 #stick-ph {
   display: none;
+}
+
+circle {
+  -webkit-transition: opacity 500ms linear;
+  -ms-transition: opacity 500ms linear;
+  transition: opacity 500ms linear;
 }
 
 .mobile-only {
@@ -18,6 +25,21 @@ body {
     left: 10px;
     z-index: 20;
   }
+}
+
+.day-panel {
+  opacity: 0.3;
+  // padding-bottom: 600px;
+  -webkit-transition: opacity 500ms linear;
+  -ms-transition: opacity 500ms linear;
+  transition: opacity 500ms linear;
+  &.active {
+    opacity: 1;
+  }
+}
+
+.map-panel {
+  padding-bottom: 600px;
 }
 
 // #stick-me {
@@ -38,7 +60,7 @@ body {
   width: 40%;
   color: white;
   padding: 30px;
-  padding-bottom: 300px;
+  padding-bottom: 0;
   padding-top: 80px;
   @media @mobile {
     display: none;
@@ -94,13 +116,13 @@ body {
     text-align: center;
     font-family: @boldest-graphics;
     color: @red;
-    padding: 30px 0;
-    background: rgba(255,255,255,0.6);
+    padding: 20px 0;
+    background: rgba(255,255,255,0.7);
     margin-top: 70px;
   }
   .protest-day {
     padding: 0px 20px;
-    background: rgba(255,255,255,0.6);
+    background: rgba(255,255,255,0.7);
   }
   .protest-name {
     font-size: 14px;
@@ -109,6 +131,7 @@ body {
   }
   .protest-desc {
     padding: 5px 0;
+    padding-bottom: 30px;
   }
   .protest-damages {
     padding-bottom: 40px;
@@ -140,16 +163,23 @@ body {
 }
 
 .chatter {
+  font-size: 18px;
+  padding-top: 30px;
   max-width: 900px;
+  font-family: @med-graphics;
   @media @mobile {
     padding: 0 15px;
+    font-size: 16px;
+    font-family: @block-graphics;
   }
 }
 
 .hed-wrapper {
-  margin-top: 80px;
+  margin-top: 100px;
+  color: @dark-gray-blue;
   @media @mobile {
-    margin-top: 40px;
+    margin-top: 45px;
+    color: darken(@gray-blue,25%);
   }
   .hed {
     font-family: @bold-graphics;
@@ -198,6 +228,8 @@ body {
   text-align: center;
   padding-top: 50px;
   font-size: 16px;
+  color: @dark-gray-blue;
+  font-family: @bold-graphics;
   .fa {
     font-size: 30px;
   }
