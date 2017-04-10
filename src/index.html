@@ -26,14 +26,10 @@
       <div class="chatter">The bay area erupted into protests as soon as President Trump was inaugurated and the protests show no sign of abating. We track the protests each day of Trump's presidency.</div>
     </div>
 
-    <div id="stick-here"></div>
-    <div id="stick-me">
-      <div class="map-container">
-        <div id="map"></div>
-      </div>
-      <div class="tooltip-map"></div>
+    <div class="map-container">
+      <div id="map"></div>
     </div>
-    <div id="stick-ph"></div>
+    <div class="tooltip-map"></div>
 
     <div class="top-container">
 
@@ -41,7 +37,7 @@
         <div class="hed">Protest during the Trump presidency</div>
         <div class="chatter">The bay area erupted into protests as soon as President Trump was inaugurated and the protests show no sign of abating. We track the protests each day of Trump's presidency.</div>
       </div>
-      
+
       <div class="instructions">Scroll to see the protests each day.
         <div class="arrow"><i class="fa fa-angle-double-down" aria-hidden="true"></i></div>
 
@@ -66,9 +62,6 @@
       <div class='protest-day'>
         <div class='protest-name'><%=d.Location%>, <%=d.Date%></div>
         <div class='protest-desc'><%=d.Descriptor%></div>
-        <!-- <div class='protest-numbers'><span class='bold-class'>Numbers: </span><%=d.Numbers%></div>
-        <div class='protest-arrests'><span class='bold-class'>Arrests: </span><%=d.Arrests%></div>
-        <div class='protest-damages'><span class='bold-class'>Damages: </span><%=d.Damages%></div> -->
       </div>
     <% }); %>
     </div>
