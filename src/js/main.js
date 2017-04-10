@@ -155,12 +155,20 @@ var drawMap = function(dayData,current_day) {
   console.log(current_day);
   if (current_day != 101){
     var avgLat = 0, avgLon = 0;
-    dayData.forEach(function(day){
-      avgLat += +day["Lat"];
-      avgLon += +day["Lon"];
-    });
-    avgLat = avgLat/dayData.length-0.1;
-    avgLon = avgLon/dayData.length;
+    if (screen.width <=480) {
+      dayData.forEach(function(day){
+        avgLat += +day["Lat"];
+        avgLon += +day["Lon"];
+      });
+      avgLat = avgLat/dayData.length-0.1;
+      avgLon = avgLon/dayData.length;
+    } else {
+      dayData.forEach(function(day){
+        avgLat += +day["Lat"];
+      });
+      avgLat = avgLat/dayData.length-0.1;
+      avgLon = sf_long;
+    }
 
     map.setView(new L.LatLng(avgLat, avgLon), map.getZoom(), {"animation": true});
   } else {
