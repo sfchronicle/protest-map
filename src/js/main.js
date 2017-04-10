@@ -17,53 +17,11 @@ if (screen.width <= 480) {
   var offset_top = 600;
 }
 
-// if (screen.width <= 480) {
-//   window.onscroll = function() {activate()};
-// }
-
-function activate() {
-  var sticker = document.getElementById('stick-me');
-  var sticker_ph = document.getElementById('stick-ph');
-  var window_top = document.body.scrollTop;
-  var div_top = document.getElementById('stick-here').getBoundingClientRect().top + window_top;
-  // var long = document.getElementById('long');
-
-  if (window_top > div_top) {
-      sticker.classList.add('fixed-map');
-      $("#stick-ph").css("height", $("#map").height());
-      sticker_ph.style.display = 'block'; // puts in a placeholder for where sticky used to be for smooth scrolling
-      // long.style.display = 'inline-block';
-  } else {
-      sticker.classList.remove('fixed-map');
-      sticker_ph.style.display = 'none'; // removes placeholder
-      // long.style.display = 'none';
-  }
-}
-
-// fills in HTML for year as years toggle
-var updateDay = function(day,date) {
-  document.querySelector(".display-day").innerHTML = `<strong>${day}</strong> (${date})`;
-};
-
 // tooltip information
 function tooltip_function (d) {
   var html_str = "<div class='name'>"+d.Descriptor+"</div>"
   return html_str;
 }
-
-// fills in HTML for year as years toggle
-var updateText = function(dayData) {
-  var html_str = "";
-  if (dayData){
-    html_str = "<div class='protest-day'>"
-    dayData.forEach(function(d,idx){
-      html_str = html_str+"<div class='protest-name'>"+d.Location+", "+d.Date+"</div><div class='protest-desc'>"+d.Descriptor+"</div><div class='protest-numbers'><span class='bold-class'>Numbers: </span>"+d.Numbers+"</div><div class='protest-arrests'><span class='bold-class'>Arrests: </span>"+d.Arrests+"</div><div class='protest-damages'><span class='bold-class'>Damages: </span>"+d.Damages+"</div>"
-    });
-    document.querySelector(".protest-box").innerHTML = html_str+"</div>";
-  } else {
-    document.querySelector(".protest-box").innerHTML = "";
-  }
-};
 
 // making a list of all the days of the presidency (for which we have protests)
 var days = [], dates = [], prevDay = -1;
@@ -96,9 +54,9 @@ map.dragging.enable();
 var mapLayer = L.tileLayer("https://api.mapbox.com/styles/v1/emro/ciyvv7c2n003h2sqvmfffselg/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZW1ybyIsImEiOiJjaXl2dXUzMGQwMDdsMzJuM2s1Nmx1M29yIn0._KtME1k8LIhloMyhMvvCDA",{attribution: '© <a href="https://www.mapbox.com/map-feedback/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> <strong><a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a></strong>'})
 mapLayer.addTo(map);
 
-L.control.zoom({
-     position:'topright'
-}).addTo(map);
+// L.control.zoom({
+//      position:'topright'
+// }).addTo(map);
 
 // dragging and zooming controls
 map.scrollWheelZoom.disable();
@@ -122,8 +80,6 @@ g = svg.append("g");
 
 // draw bubbles
 var drawMap = function(dayData,current_day) {
-
-  console.log(dayData);
 
 	d3.select("svg").selectAll("circle").remove();
 	var svg = d3.select("#map").select("svg"),
@@ -196,6 +152,7 @@ var drawMap = function(dayData,current_day) {
     )
   }
 
+  console.log(current_day);
   if (current_day != 101){
     var avgLat = 0, avgLon = 0;
     dayData.forEach(function(day){
@@ -210,7 +167,6 @@ var drawMap = function(dayData,current_day) {
     map.setView(new L.LatLng(sf_lat, sf_long), map.getZoom(), {"animation": true});
   }
   // map.panTo(new L.LatLng(40.737, -73.923));
-  console.log(dayData);
 
 }
 
@@ -221,125 +177,50 @@ drawMap(dayData,101);
 
 var qsa = s => Array.prototype.slice.call(document.querySelectorAll(s));
 
-var i; var prevIDX = -1; var prevmapIDX = -1;
-$(window).scroll(function(){
-  var pos = $(this).scrollTop();
-  var pos_map_top = $('#bottom-of-top').offset().top;
-  if (pos < pos_map_top){
-    var dayData = protestData.filter(function(d) {
-        return d.Day <= 101
-    });
-    drawMap(dayData,101);
-    var prevmapIDX = -1;
-  }
-  qsa(".map-panel").forEach(function(map,mapIDX) {
-    var pos_map = $('#mapday'+days[mapIDX]).offset().top-150;
-    if ((pos > pos_map) && (mapIDX != prevmapIDX)) {
-      prevmapIDX = mapIDX;
-      var dayData = protestData.filter(function(d) {
-          return d.Day <= days[mapIDX]
-      });
-      drawMap(dayData,days[+mapIDX]);
+var scrollTimer = null;
+$(window).scroll(function () {
+    if (scrollTimer) {
+        clearTimeout(scrollTimer);   // clear any previous pending timer
     }
-  });
-  qsa(".day-panel").forEach(function(day,dayIDX) {
-    // console.log(day);
-    var pos_panel = $('#panel'+days[dayIDX]).offset().top-offset_top;
-    if ((pos > pos_panel) && (dayIDX != prevIDX)) {
-      prevIDX = dayIDX;
-      var x=document.getElementsByClassName("day-panel");
-      for (i=0; i< x.length; i++) {
-        x[i].classList.remove("active");
-      }
-      day.classList.add("active");
-
-      // var x = document.getElementsByClassName("icon");
-      // for (i = 0; i < x.length; i++) {
-      //     x[i].style.color = "#696969";
-      // }
-      // var x = document.getElementsByClassName(panel.id+panel.key_value);
-      // for (i = 0; i < x.length; i++) {
-      //     x[i].style.color = "red";
-      // }
-      // var titles = document.getElementsByClassName("bold-class");
-      // for (i = 0; i < titles.length; i++) {
-      //   titles[i].classList.remove("active");
-      // }
-      // var targetDiv = document.getElementById("panelcontainer"+panel.id).getElementsByClassName("bold-class")[0];
-      // console.log(targetDiv);
-      // targetDiv.classList.add("active");
-    }
-  });
+    scrollTimer = setTimeout(handleScroll, 100);   // set new timer
 });
 
-// initialize to day 1
-// var i = 0;
-//
-// // set up looping
-// var loop = null;
-// var tick = function() {
-//   var dayData = protestData.filter(function(d) {
-//     return d.Day <= days[i]
-//   });
-//   drawMap(dayData,days[i]);
-// 	updateDay(days[i],dates[i]);
-//   // updateText(dayData);
-//   i = (i + 1) % days.length;
-//   loop = setTimeout(tick, i == 0 ? 1700 : 1000);
-// };
+var i; var prevIDX = -1; var prevmapIDX = -1;
 
-// start loop
-// tick();
-// var looping = true;
+function handleScroll() {
+    scrollTimer = null;
 
-// var dropdown = document.querySelector("select");
-// // if user picks the year, we update the selected mode and stop looping
-// dropdown.addEventListener("change", function() {
-//   document.querySelector("#seeall").classList.remove("selected");
-//   document.querySelector(".start").classList.remove("selected");
-//   document.querySelector(".pause").classList.add("selected");
-//   looping = false;
-//   // document.querySelector(".chart").classList.add("clickable");
-//   clearTimeout(loop);
-//   var dayData = protestData.filter(function(d) {
-//     return d.Day == +dropdown.value;
-//   });
-//   drawMap(dayData,+dropdown.value);
-//   var dateIDX = days.indexOf(+dropdown.value);
-//   updateDay(dropdown.value,dates[dateIDX]);
-//   // updateText(dayData);
-// });
-//
-// document.querySelector(".start").addEventListener("click", function(e) {
-//   document.querySelector("#seeall").classList.remove("selected");
-//   if (looping) { return }
-//   document.querySelector(".start").classList.add("selected");
-//   document.querySelector(".pause").classList.remove("selected");
-//   looping = true;
-//   // document.querySelector(".chart").classList.remove("clickable");
-//   dropdown.value = "--";
-//   tick();
-//   document.querySelector("#day-box").classList.add("show");
-// })
-// document.querySelector(".pause").addEventListener("click", function(e) {
-//   document.querySelector("#seeall").classList.remove("selected");
-//   if (!looping) { return }
-//   document.querySelector(".start").classList.remove("selected");
-//   document.querySelector(".pause").classList.add("selected");
-//   looping = false;
-//   // document.querySelector(".chart").classList.add("clickable");
-//   clearTimeout(loop);
-// })
-// document.querySelector("#seeall").addEventListener("click", function(e) {
-//   document.querySelector(".start").classList.remove("selected");
-//   document.querySelector(".pause").classList.add("selected");
-//   looping = false;
-//   // document.querySelector(".chart").classList.add("clickable");
-//   clearTimeout(loop);
-//   var dayData = protestData.filter(function(d) {
-//     return d.Day <= 100
-//   });
-//   drawMap(dayData,100);
-//   document.querySelector("#day-box").classList.remove("show");
-//   document.querySelector("#seeall").classList.add("selected");
-// })
+  // $(window).scroll(function(){
+    var pos = $(this).scrollTop();
+    var pos_map_top = $('#bottom-of-top').offset().top;
+    if (pos < pos_map_top){
+      var dayData = protestData.filter(function(d) {
+          return d.Day <= 101
+      });
+      drawMap(dayData,101);
+      var prevmapIDX = -1;
+    }
+    qsa(".map-panel").forEach(function(map,mapIDX) {
+      var pos_map = $('#mapday'+days[mapIDX]).offset().top-150;
+      if ((pos > pos_map) && (mapIDX != prevmapIDX)) {
+        prevmapIDX = mapIDX;
+        var dayData = protestData.filter(function(d) {
+            return d.Day <= days[mapIDX]
+        });
+        drawMap(dayData,days[+mapIDX]);
+      }
+    });
+    qsa(".day-panel").forEach(function(day,dayIDX) {
+      // console.log(day);
+      var pos_panel = $('#panel'+days[dayIDX]).offset().top-offset_top;
+      if ((pos > pos_panel) && (dayIDX != prevIDX)) {
+        prevIDX = dayIDX;
+        var x=document.getElementsByClassName("day-panel");
+        for (i=0; i< x.length; i++) {
+          x[i].classList.remove("active");
+        }
+        day.classList.add("active");
+      }
+    });
+  // });
+}
