@@ -18,10 +18,10 @@ if (screen.width <= 480) {
 }
 
 // tooltip information
-// function tooltip_function (d) {
-//   var html_str = "<div class='name'>"+d.Descriptor+"</div>"
-//   return html_str;
-// }
+function tooltip_function (d) {
+  var html_str = "<div class='name'>"+d.Descriptor+"</div>"
+  return html_str;
+}
 
 // making a list of all the days of the presidency (for which we have protests)
 var days = [], dates = [], prevDay = -1;
@@ -34,7 +34,7 @@ protestData.forEach(function(d){
 });
 
 // show tooltip
-// var tooltip = d3.select("div.tooltip-map");
+var tooltip = d3.select("div.tooltip-map");
 
 // initialize map with center position and zoom levels
 var map = L.map("map", {
@@ -115,29 +115,29 @@ var drawMap = function(dayData,current_day) {
       } else {
         return d.Size*10;
       }
+    })
+    .on('mouseover', function(d) {
+      console.log("mouseover occuring");
+      var html_str = tooltip_function(d);
+      tooltip.html(html_str);
+      tooltip.style("visibility", "visible");
+    })
+    .on("mousemove", function() {
+      if (screen.width <= 480) {
+        return tooltip
+          .style("top", 70+"px")
+          .style("left",40+"px");
+          // .style("top",(d3.event.pageY+40)+"px")//(d3.event.pageY+40)+"px")
+          // .style("left",10+"px");
+      } else {
+        return tooltip
+          .style("top", (d3.event.pageY+10)+"px")
+          .style("left",(d3.event.pageX-100)+"px");
+      }
+    })
+    .on("mouseout", function(){
+        return tooltip.style("visibility", "hidden");
     });
-    // .on('mouseover', function(d) {
-    //   console.log("mouseover occuring");
-    //   var html_str = tooltip_function(d);
-    //   tooltip.html(html_str);
-    //   tooltip.style("visibility", "visible");
-    // })
-    // .on("mousemove", function() {
-    //   if (screen.width <= 480) {
-    //     return tooltip
-    //       .style("top", 70+"px")
-    //       .style("left",40+"px");
-    //       // .style("top",(d3.event.pageY+40)+"px")//(d3.event.pageY+40)+"px")
-    //       // .style("left",10+"px");
-    //   } else {
-    //     return tooltip
-    //       .style("top", (d3.event.pageY+10)+"px")
-    //       .style("left",(d3.event.pageX-100)+"px");
-    //   }
-    // })
-    // .on("mouseout", function(){
-    //     return tooltip.style("visibility", "hidden");
-    // });
 
     map.on("viewreset", update);
     update();
