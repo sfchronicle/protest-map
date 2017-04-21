@@ -3,6 +3,7 @@
     "Location": "Oakland",
     "Lat": 37.8044,
     "Lon": "-122.2711",
+    "Count": 0,
     "Date": "Jan. 20",
     "Day": 1,
     "Numbers": "Thousands",
@@ -10,12 +11,13 @@
     "Damages": "None",
     "Arrests": 1,
     "Descriptor": "Thousands of people took to the streets of downtown Oakland to march in protest of President Donald Trump's inaguration Jan. 20. By the evening, a smaller group clashed with police, but only one arrest was reported.",
-    "Link ": "http://www.sfgate.com/news/article/Anti-Trump-protesters-vowing-to-stand-10872817.php"
+    "RelatedLink": "http://www.sfgate.com/news/article/Anti-Trump-protesters-vowing-to-stand-10872817.php"
   },
   {
     "Location": "San Francisco",
     "Lat": 37.7749,
     "Lon": "-122.4194",
+    "Count": 1,
     "Date": "Jan. 20",
     "Day": 1,
     "Numbers": "Thousands",
@@ -23,12 +25,13 @@
     "Damages": "None",
     "Arrests": 0,
     "Descriptor": "In San Francisco, thousands flocked to several events to protest President Donald Trump's inaguration, including a long chain of people who tried to link hands across the almost four miles of the Golden Gate Bridge in a peaceful protest.",
-    "Link ": "http://www.sfgate.com/bayarea/article/Small-crowd-kicks-off-Inauguration-Day-protests-10871551.php"
+    "RelatedLink": "http://www.sfgate.com/bayarea/article/Small-crowd-kicks-off-Inauguration-Day-protests-10871551.php"
   },
   {
     "Location": "San Francisco",
     "Lat": 37.7749,
     "Lon": "-122.4194",
+    "Count": 2,
     "Date": "Jan. 20",
     "Day": 1,
     "Numbers": "Dozens",
@@ -36,12 +39,13 @@
     "Damages": "None",
     "Arrests": 11,
     "Descriptor": "About a dozen people handcuffed themselves to Caltrain tracks in San Francisco — they had to be cut free — to protest President Trump's Jan. 20 inaguration. Eleven were arrested.",
-    "Link ": "http://www.sfgate.com/bayarea/article/Inauguration-Day-protest-blocks-tracks-near-10872001.php"
+    "RelatedLink": "http://www.sfgate.com/bayarea/article/Inauguration-Day-protest-blocks-tracks-near-10872001.php"
   },
   {
     "Location": "Berkeley",
     "Lat": 37.8716,
     "Lon": "-122.2727",
+    "Count": 3,
     "Date": "Jan. 20",
     "Day": 1,
     "Numbers": "Thousands",
@@ -49,12 +53,13 @@
     "Damages": "None",
     "Arrests": 0,
     "Descriptor": "Thousands of students, faculty and members of the UC Berkeley community met on the East Bay campus to hold a peaceful rally against President Donald Trump's inaguration. ",
-    "Link ": "http://www.sfgate.com/bayarea/article/Small-crowd-kicks-off-Inauguration-Day-protests-10871551.php"
+    "RelatedLink": "http://www.sfgate.com/bayarea/article/Small-crowd-kicks-off-Inauguration-Day-protests-10871551.php"
   },
   {
     "Location": "San Francisco",
     "Lat": 37.7749,
     "Lon": "-122.4194",
+    "Count": 4,
     "Date": "Jan. 21",
     "Day": 2,
     "Numbers": "Tens of thousands",
@@ -62,12 +67,13 @@
     "Damages": "None",
     "Arrests": 0,
     "Descriptor": "Tens of thousands of people took to the streets of San Francisco Jan. 21, the day after President Donald Trump took office, in one of a series of national Women's Marches designed to express support for women's rights.",
-    "Link ": "http://www.sfgate.com/bayarea/article/Crowds-gather-to-demonstrate-against-Trump-10873932.php"
+    "RelatedLink": "http://www.sfgate.com/bayarea/article/Crowds-gather-to-demonstrate-against-Trump-10873932.php"
   },
   {
     "Location": "Oakland ",
     "Lat": 37.8044,
     "Lon": "-122.2711",
+    "Count": 5,
     "Date": "Jan. 21",
     "Day": 2,
     "Numbers": "Tens of thousands",
@@ -75,12 +81,13 @@
     "Damages": "None",
     "Arrests": 0,
     "Descriptor": "In one of the largest Oakland protests in recent memory, tens of thousands of particpants in the Easy Bay city's Women's March took to the streets to stand up for women's righs, with many denouncing President Trump's inaguration the day before.",
-    "Link ": "http://www.sfgate.com/bayarea/article/Crowds-gather-to-demonstrate-against-Trump-10873932.php"
+    "RelatedLink": "http://www.sfgate.com/bayarea/article/Crowds-gather-to-demonstrate-against-Trump-10873932.php"
   },
   {
     "Location": "Walnut Creek",
     "Lat": 37.9101,
     "Lon": "-122.0652",
+    "Count": 6,
     "Date": "Jan. 21",
     "Day": 2,
     "Numbers": "Hundreds",
@@ -88,12 +95,13 @@
     "Damages": "None",
     "Arrests": 0,
     "Descriptor": "Even in the suburbs of the Bay Area, crowds joined the Women's Day protests the day after President Trump's inaguration. Several hundred, joined by several state senators, attended a rally in Walnut Creek, where protests don't typically happen. ",
-    "Link ": "http://www.sfgate.com/bayarea/article/Crowds-gather-to-demonstrate-against-Trump-10873932.php"
+    "RelatedLink": "http://www.sfgate.com/bayarea/article/Crowds-gather-to-demonstrate-against-Trump-10873932.php"
   },
   {
     "Location": "SFO",
     "Lat": 37.6213,
     "Lon": "-122.379",
+    "Count": 7,
     "Date": "Jan. 28",
     "Day": 8,
     "Numbers": "Hundreds",
@@ -101,12 +109,13 @@
     "Damages": "None",
     "Arrests": 0,
     "Descriptor": "Hundreds of people descended on SFO Jan. 28 in the wake of President Trump's travel ban on seven predominantly Muslim countries to protest the new policy.",
-    "Link ": "http://www.sfgate.com/news/article/Hundreds-protest-at-San-Francisco-airport-over-10891748.php"
+    "RelatedLink": "http://www.sfgate.com/news/article/Hundreds-protest-at-San-Francisco-airport-over-10891748.php"
   },
   {
     "Location": "Alameda",
     "Lat": 37.7652,
     "Lon": "-122.2416",
+    "Count": 8,
     "Date": "Jan. 29",
     "Day": 9,
     "Numbers": "Hundreds",
@@ -114,12 +123,13 @@
     "Damages": "None",
     "Arrests": 0,
     "Descriptor": "Hundreds showed up outside an Islamic center in Alameda to protest President Trump's travel ban on seven predominanlty Muslim countries.",
-    "Link ": "http://www.eastbaytimes.com/2017/02/01/__trashed-7/"
+    "RelatedLink": "http://www.eastbaytimes.com/2017/02/01/__trashed-7/"
   },
   {
     "Location": "Mountain View (Google HQ)",
     "Lat": 37.3861,
     "Lon": "-122.0839",
+    "Count": 9,
     "Date": "Jan. 30",
     "Day": 10,
     "Numbers": "Hundreds",
@@ -127,12 +137,13 @@
     "Damages": "None",
     "Arrests": 0,
     "Descriptor": "Hundreds of Google employees at the tech giant's Mountain View headquarters Jan. 30 protested President Trump's executie order restricting immigration from seven predominantly Muslim countries.",
-    "Link ": "http://www.cnbc.com/2017/01/30/google-employees-protest-trump.html"
+    "RelatedLink": "http://www.cnbc.com/2017/01/30/google-employees-protest-trump.html"
   },
   {
     "Location": "UC Berkeley",
     "Lat": 37.869485,
     "Lon": "-122.259118",
+    "Count": 10,
     "Date": "Feb. 1",
     "Day": 13,
     "Numbers": "Hundreds",
@@ -142,9 +153,24 @@
     "Descriptor": "Hundreds of protestors gathered at UC Berkeley to protest far-right provocateur (then with Breibart News) Milo Yiannopoulos' speech at the school. Masked anarchists tore down fences and smashed windows of the student center, forcing the event to be canceled in a violent protest."
   },
   {
+    "Location": "Berkeley",
+    "Lat": 37.869363,
+    "Lon": "-122.271381",
+    "Count": 11,
+    "Date": "Mar. 4",
+    "Day": 44,
+    "Numbers": "Hundreds",
+    "Size": 2,
+    "Damages": "Allegedly none.",
+    "Arrests": 10,
+    "Descriptor": "Dozens of President Trump supporters gathering in Berkeley's Civic Center Park were greatly outnumberd by antifa and counterdemonstrators. Both sides clashed violently in the park, throwing both bricks and punches, and there were a number of arrests for assault with a deadly weapon.",
+    "RelatedLink": "http://www.sfgate.com/bayarea/article/Scattered-fist-fights-break-out-at-pro-Trump-10977508.php"
+  },
+  {
     "Location": "San Jose",
     "Lat": 37.337614,
     "Lon": "-121.886058",
+    "Count": 12,
     "Date": "March 8",
     "Day": 48,
     "Numbers": "Thousands",
@@ -152,12 +178,13 @@
     "Damages": "None",
     "Arrests": 0,
     "Descriptor": "Several thousand people gathered March 4 at San Jose's City Hall for a lunctime for a lunctime rally to kick off International Women's Day.",
-    "Link ": "http://www.bizjournals.com/sanjose/news/2017/03/08/day-without-a-woman-brown-bags-it-in-san-jose.html"
+    "RelatedLink": "http://www.bizjournals.com/sanjose/news/2017/03/08/day-without-a-woman-brown-bags-it-in-san-jose.html"
   },
   {
     "Location": "UC Berkeley",
     "Lat": 37.869485,
     "Lon": "-122.259118",
+    "Count": 13,
     "Date": "March 8",
     "Day": 48,
     "Numbers": "Hundreds",
@@ -165,12 +192,13 @@
     "Damages": "None",
     "Arrests": 0,
     "Descriptor": "On International Women's Day, a couple of hundred protestors gathered at UC Berkeley's Sproul Plaza to rally for abortion rights, among other issues.",
-    "Link ": "http://www.sfgate.com/news/article/A-Day-Without-a-Woman-rallies-kick-off-in-10986735.php"
+    "RelatedLink": "http://www.sfgate.com/news/article/A-Day-Without-a-Woman-rallies-kick-off-in-10986735.php"
   },
   {
     "Location": "San Francisco ",
     "Lat": 37.7749,
     "Lon": "-122.4194",
+    "Count": 14,
     "Date": "March 8",
     "Day": 48,
     "Numbers": "Hundreds",
@@ -178,12 +206,13 @@
     "Damages": "None",
     "Arrests": 0,
     "Descriptor": "On International Women's Day — or \"A Day Without A Woman,\" as protestors called it — hundreds of women went on strike to protest sexism and gender inequalities in San Francisco March 8.",
-    "Link ": "http://www.sfgate.com/news/article/A-Day-Without-a-Woman-rallies-kick-off-in-10986735.php"
+    "RelatedLink": "http://www.sfgate.com/news/article/A-Day-Without-a-Woman-rallies-kick-off-in-10986735.php"
   },
   {
     "Location": "Oakland",
     "Lat": 37.8044,
     "Lon": "-122.2711",
+    "Count": 15,
     "Date": "March 8",
     "Day": 48,
     "Numbers": "Hundreds",
@@ -191,6 +220,30 @@
     "Damages": "None",
     "Arrests": 1,
     "Descriptor": "On International Women's Day, hundreds of women March 8, joined by male supporters, marched through the streets of Oakland to rail against sexism and demand gender equity, among other causes.",
-    "Link ": "http://www.sfgate.com/bayarea/article/Women-s-Day-march-kicks-off-in-Oakland-10988400.php"
+    "RelatedLink": "http://www.sfgate.com/bayarea/article/Women-s-Day-march-kicks-off-in-Oakland-10988400.php"
+  },
+  {
+    "Location": "Berkeley ",
+    "Lat": 37.869363,
+    "Lon": "-122.271381",
+    "Count": 16,
+    "Date": "April 15",
+    "Day": 55,
+    "Numbers": "Hundreds",
+    "Size": 2,
+    "Damages": "Some vandalism.",
+    "Arrests": 20,
+    "Descriptor": "In the second pro-President Trump rally in Berkeley in as many months, right-wingers and liberals joined by antifa clashed at Civc Center Park before violence spilled to the streets of Berkeley. Twenty people were arrested, including two on outstanding warrants from the March 4 protest, police said.",
+    "RelatedLink": "http://www.sfgate.com/bayarea/article/Protesters-clash-at-pro-Trump-rally-in-Berkeley-11075595.php"
+  },
+  {
+    "Location": "San Francisco ",
+    "Lat": 37.7749,
+    "Lon": "-122.4194",
+    "Count": 17,
+    "Date": "April 15",
+    "Day": 55,
+    "Size": 2,
+    "Descriptor": "This is a sentence."
   }
 ]

@@ -3,11 +3,11 @@ var d3 = require('d3');
 
 // setting parameters for the center of the map and initial zoom level
 if (screen.width <= 480) {
-  var sf_lat = 38.0;
+  var sf_lat = 37.5;
   var sf_long = -122.23;
   var zoom_deg = 9;
 
-  var offset_top = 600;
+  var offset_top = 900;
 
 } else {
   var sf_lat = 37.6;
@@ -34,7 +34,7 @@ protestData.forEach(function(d){
 });
 
 // show tooltip
-var tooltip = d3.select("div.tooltip-map");
+// var tooltip = d3.select("div.tooltip-map");
 
 // initialize map with center position and zoom levels
 var map = L.map("map", {
@@ -79,7 +79,7 @@ var svg = d3.select("#map").select("svg"),
 g = svg.append("g");
 
 // draw bubbles
-var drawMap = function(dayData,current_day) {
+var drawMap = function(dayData,current_event) {
 
 	d3.select("svg").selectAll("circle").remove();
 	var svg = d3.select("#map").select("svg"),
@@ -99,7 +99,7 @@ var drawMap = function(dayData,current_day) {
       return "dot "+d.Location;
     })
     .style("opacity", function(d) {
-      if ((d.Day == current_day) || (current_day == 100)) {
+      if ((d.Count == current_event) || (current_event == 100)) {
         return 0.8;
       } else {
         return 0.3;
@@ -116,28 +116,28 @@ var drawMap = function(dayData,current_day) {
         return d.Size*10;
       }
     })
-    .on('mouseover', function(d) {
-      console.log("mouseover occuring");
-      var html_str = tooltip_function(d);
-      tooltip.html(html_str);
-      tooltip.style("visibility", "visible");
-    })
-    .on("mousemove", function() {
-      if (screen.width <= 480) {
-        return tooltip
-          .style("top", 70+"px")
-          .style("left",40+"px");
-          // .style("top",(d3.event.pageY+40)+"px")//(d3.event.pageY+40)+"px")
-          // .style("left",10+"px");
-      } else {
-        return tooltip
-          .style("top", (d3.event.pageY+10)+"px")
-          .style("left",(d3.event.pageX-100)+"px");
-      }
-    })
-    .on("mouseout", function(){
-        return tooltip.style("visibility", "hidden");
-    });
+    // .on('mouseover', function(d) {
+    //   console.log("mouseover occuring");
+    //   var html_str = tooltip_function(d);
+    //   tooltip.html(html_str);
+    //   tooltip.style("visibility", "visible");
+    // })
+    // .on("mousemove", function() {
+    //   if (screen.width <= 480) {
+    //     return tooltip
+    //       .style("top", 70+"px")
+    //       .style("left",40+"px");
+    //       // .style("top",(d3.event.pageY+40)+"px")//(d3.event.pageY+40)+"px")
+    //       // .style("left",10+"px");
+    //   } else {
+    //     return tooltip
+    //       .style("top", (d3.event.pageY+10)+"px")
+    //       .style("left",(d3.event.pageX-100)+"px");
+    //   }
+    // })
+    // .on("mouseout", function(){
+    //     return tooltip.style("visibility", "hidden");
+    // });
 
     map.on("viewreset", update);
     update();
@@ -152,25 +152,28 @@ var drawMap = function(dayData,current_day) {
     )
   }
 
-  console.log(current_day);
-  if (current_day != 101){
-    var avgLat = 0, avgLon = 0;
-    if (screen.width <=480) {
-      dayData.forEach(function(day){
-        avgLat += +day["Lat"];
-        avgLon += +day["Lon"];
-      });
-      avgLat = avgLat/dayData.length-0.1;
-      avgLon = avgLon/dayData.length;
+  // console.log(current_event);
+  if (current_event != 101){
+    // var avgLat = 0, avgLon = 0;
+    // if (screen.width <=480) {
+    //   dayData.forEach(function(day){
+    //     avgLat += +day["Lat"];
+    //     avgLon += +day["Lon"];
+    //   });
+    //   avgLat = avgLat/dayData.length-0.1;
+    //   avgLon = avgLon/dayData.length;
+    // } else {
+    //   dayData.forEach(function(day){
+    //     avgLat += +day["Lat"];
+    //   });
+    //   avgLat = avgLat/dayData.length-0.1;
+    //   avgLon = sf_long;
+    // }
+    if (screen.width >= 480) {
+      map.setView(new L.LatLng(dayData[dayData.length-1]["Lat"], dayData[dayData.length-1]["Lon"]-0.3), map.getZoom(), {"animation": true});
     } else {
-      dayData.forEach(function(day){
-        avgLat += +day["Lat"];
-      });
-      avgLat = avgLat/dayData.length-0.1;
-      avgLon = sf_long;
+      map.setView(new L.LatLng(dayData[dayData.length-1]["Lat"]-0.3, dayData[dayData.length-1]["Lon"]), map.getZoom(), {"animation": true});
     }
-
-    map.setView(new L.LatLng(avgLat, avgLon), map.getZoom(), {"animation": true});
   } else {
     map.setView(new L.LatLng(sf_lat, sf_long), map.getZoom(), {"animation": true});
   }
@@ -207,28 +210,36 @@ function handleScroll() {
       });
       drawMap(dayData,101);
       var prevmapIDX = -1;
+      document.getElementById("day-box").classList.remove("show");
     }
     qsa(".map-panel").forEach(function(map,mapIDX) {
-      var pos_map = $('#mapday'+days[mapIDX]).offset().top-200;
+      var pos_map = $('#mapevent'+mapIDX).offset().top-offset_top;
       if ((pos > pos_map) && (mapIDX != prevmapIDX)) {
         prevmapIDX = mapIDX;
         var dayData = protestData.filter(function(d) {
-            return d.Day <= days[mapIDX]
+            return d.Count <= mapIDX
         });
-        drawMap(dayData,days[+mapIDX]);
+        drawMap(dayData,+mapIDX);
+        // var x=document.getElementsByClassName("map-panel");
+        // for (i=0; i< x.length; i++) {
+        //   x[i].classList.remove("active");
+        // }
+        // map.classList.add("active");
+        document.getElementById("day-box").classList.add("show");
+        document.getElementById("display-day").innerText = dayData[dayData.length-1]["Day"];
       }
     });
-    qsa(".day-panel").forEach(function(day,dayIDX) {
-      // console.log(day);
-      var pos_panel = $('#panel'+days[dayIDX]).offset().top-offset_top;
-      if ((pos > pos_panel) && (dayIDX != prevIDX)) {
-        prevIDX = dayIDX;
-        var x=document.getElementsByClassName("day-panel");
-        for (i=0; i< x.length; i++) {
-          x[i].classList.remove("active");
-        }
-        day.classList.add("active");
-      }
-    });
+    // qsa(".day-panel").forEach(function(day,dayIDX) {
+    //   // console.log(day);
+    //   var pos_panel = $('#panel'+days[dayIDX]).offset().top-offset_top;
+    //   if ((pos > pos_panel) && (dayIDX != prevIDX)) {
+    //     prevIDX = dayIDX;
+    //     var x=document.getElementsByClassName("day-panel");
+    //     for (i=0; i< x.length; i++) {
+    //       x[i].classList.remove("active");
+    //     }
+    //     day.classList.add("active");
+    //   }
+    // });
   // });
 }

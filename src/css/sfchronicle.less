@@ -275,6 +275,9 @@ text {
   z-index: 99;
   left: 0;
   height: 37px;
+  @media @mobile {
+    position: relative;
+  }
 }
 
 .link {
@@ -368,6 +371,7 @@ header {
     content: " ";
     display: block;
   }
+
 }
 
 
@@ -383,11 +387,6 @@ header {
   &.landing {
     margin-bottom: 2.5em;
   }
-}
-
-.byline {
-  color: @rename-color;
-  font-style: italic;
 }
 
 .background-img {
