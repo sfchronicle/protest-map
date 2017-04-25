@@ -99,7 +99,7 @@ var drawMap = function(dayData,current_event) {
     .style("stroke","#696969")
     .attr("r", function(d) {
       if (screen.width <= 480) {
-        return d.Size*5;
+        return d.Size*6;
       } else {
         return d.Size*10;
       }
