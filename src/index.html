@@ -24,18 +24,17 @@
     <div class="map-container">
       <div id="map"></div>
     </div>
-    <div class="tooltip-map"></div>
 
     <div class="top-container">
 
       <div class="hed-wrapper">
-        <div class="hed">100 days of Trump, dozens of Bay Area protests</div>
+        <div class="hed">100 days of Trump, plenty of Bay Area protests</div>
         <div class="byline">By <a href="mailto:mbodley@sfchronicle.com">Michael Bodley</a> and <a href="mailto:eoneill@sfchronicle.com">Emma O'Neill</a></div>
         <%= t.include("partials/_title_social.html") %>
-        <div class="chatter">Even for the Bay Area, long the United States' hotbed of progressive activism, the first 100 days of the Trump administration has brought about a fervor for protest that hasn't been seen in generations. Thousands of people who had never in their lives held a picket sign or bellowed “this is what democracy looks like” through the streets of San Francisco, Oakland, Berkeley, San Jose and beyond did so in droves, defying a set of Republican policy prescriptions championed by Trump. Track the “Resistance” here.</div>
+        <div class="chatter">Even for the Bay Area, long the United States' hotbed of progressive activism, the first 100 days of the Trump administration brought a level of protest not seen in generations. Thousands of people who had never in their lives held a picket sign or bellowed “this is what democracy looks like” marched through the streets of San Francisco, Oakland, Berkeley, San Jose and other bay area cities to protest the policy prescriptions championed by Trump. It’s called the resistance and it’s not going away.</div>
       </div>
 
-      <div class="instructions">Scroll to see the protests each day.
+      <div class="instructions">Scroll down to see the protests so far.
         <div class="arrow"><i class="fa fa-angle-double-down" aria-hidden="true"></i></div>
 
       </div>
@@ -61,9 +60,18 @@
     </div>
     </div>
 
-    
+    <div id="top-of-bottom"></div>
+    <div class="bottom-of-page">
+      <div class="link-instructions">Trump's first 100 days:</div>
+      <div class="link-container">
+        <div class="link-button"><a href="http://projects.sfchronicle.com/2017/trump-era/" target="_blank"><div class="bold">Story: Trump protests</div> Read about protests in the bay area</a></div>
+        <div class="link-button"><a href="http://projects.sfchronicle.com/2017/trump-era/" target="_blank"><div class="bold">Interactive: Trump era</div> Track Trump's time in office</a></div>
+      </div>
+
 
     <%= t.include("partials/_footer.html") %>
+
+    </div>
 
     <script>
       var protestData = <%= JSON.stringify(json.Protests) %>

@@ -7,6 +7,10 @@ body {
   font-family: @block-graphics;
 }
 
+iframe {
+  border: 0 !important;
+}
+
 #title_social_links {
   text-align: center;
   margin: auto;
@@ -278,7 +282,7 @@ circle {
 }
 
 .chatter {
-  font-size: 18px;
+  font-size: 17px;
   // padding-top: 30px;
   max-width: 900px;
   font-family: @med-graphics;
@@ -389,6 +393,73 @@ body {
 
 .leaflet-control-zoom {
   display: none;
+}
+
+// link-styles -----------------------------------------------------------------
+
+.link-instructions {
+  position: relative;
+  // text-align: left;
+  max-width: 800px;
+  margin:auto;
+  color: black;
+  font-family: @med-graphics;
+  font-size: 18px;
+  text-align: center;
+  padding-top: 30px;
+}
+
+.link-container {
+  text-align: center;
+  margin: auto;
+  margin-top: 20px;
+  font-size: 16px;
+}
+
+.link-button {
+  position: relative;
+  display: inline-block;
+  max-width: 900px;
+  width: 40%;
+  height: 100%;
+  text-align: center;
+  // font-size: 16px;
+  margin: auto;
+  cursor: pointer;
+  background: @dark-gray;
+  a {
+    color: @white;
+  }
+  .bold {
+    font-family: @med-graphics;
+    font-size: 18px;
+    padding-bottom: 5px;
+    // text-decoration: underline;
+    padding-left: 20px;
+  }
+  text-align: center;
+  padding: 10px 100px;
+  @media @tablet-horiz {
+    padding: 10px 50px;
+  }
+  border: 2px solid white;
+  &:hover {
+    background: rgba(255,255,255,0.8);
+    a {
+      color: @dark-gray;
+      // font-family: @med-graphics;
+    }
+    border: 2px solid @dark-gray;
+  }
+  // background: rgba(255,255,255,0.3);
+  // width: 60%;
+  margin: auto;
+}
+
+.bottom-of-page {
+  position: relative;
+  width: 100%;
+  background: rgba(255,255,255,0.7);
 }
 
 // credits ---------------------------------------------------------------------

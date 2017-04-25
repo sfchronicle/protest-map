@@ -102,7 +102,7 @@ var drawMap = function(dayData,current_event) {
       if ((d.Count == current_event) || (current_event == 100)) {
         return 0.9;
       } else {
-        return 0.3;
+        return 0.4;
       }
     })
     .style("fill", function(d) {
@@ -204,6 +204,7 @@ function handleScroll() {
   // $(window).scroll(function(){
     var pos = $(this).scrollTop();
     var pos_map_top = $('#bottom-of-top').offset().top;
+    var pos_map_bottom = $('#top-of-bottom').offset().top-500;
     if (pos < pos_map_top){
       var dayData = protestData.filter(function(d) {
           return d.Day <= 101
@@ -229,6 +230,9 @@ function handleScroll() {
         document.getElementById("display-day").innerText = dayData[dayData.length-1]["Day"];
       }
     });
+    if (pos > pos_map_bottom) {
+      document.getElementById("day-box").classList.remove("show");
+    }
     // qsa(".day-panel").forEach(function(day,dayIDX) {
     //   // console.log(day);
     //   var pos_panel = $('#panel'+days[dayIDX]).offset().top-offset_top;
