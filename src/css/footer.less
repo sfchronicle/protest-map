@@ -1,0 +1,78 @@
+// footer styles ---------------------------------------------------------------------
+
+footer {
+  padding: 30px;
+  background: @charcoal;
+  z-index: 99;
+  clear:both;
+  // display: relative;
+
+  .logo {
+    float: left;
+    margin-right: 10px;
+
+    img {
+      padding: 10px 0;
+      width: 180px;
+      vertical-align: bottom;
+    }
+  }
+
+  &::after {
+    clear: both;
+    content: " ";
+    display: block;
+  }
+
+  .footer-content{
+    max-width: 1200px;
+    margin: auto;
+  }
+  .logo {
+    width: 100%;
+    padding: 20px;
+  }
+  padding-bottom: 50px;
+  a {
+    color: @light-gray !important;
+    &:hover {
+      color: white !important;
+    }
+  }
+  .fa {
+    font-size: 20px;
+    color: @light-gray !important;
+    &:hover {
+      color: white !important;
+    }
+  }
+
+  h3 {
+    width: 100%;
+    border-bottom: 1px solid @dark-gray;
+  }
+
+  ul {
+    padding: 0;
+  }
+
+  .top-list {
+    width: 100%;
+  }
+
+  .hcsf_links {
+    width: 100%;
+
+    li {
+      max-width: 100%;
+      list-style-type: none;
+      float: left;
+      padding: 0 20px;
+      @media @mobile {
+        padding: 0 15px;
+      }
+    }
+    color: white;
+    font-size: 10px;
+  }
+}

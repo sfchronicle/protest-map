@@ -17,12 +17,6 @@ if (screen.width <= 480) {
   var offset_top = 600;
 }
 
-// tooltip information
-function tooltip_function (d) {
-  var html_str = "<div class='name'>"+d.Descriptor+"</div>"
-  return html_str;
-}
-
 // making a list of all the days of the presidency (for which we have protests)
 var days = [], dates = [], prevDay = -1;
 protestData.forEach(function(d){
@@ -32,9 +26,6 @@ protestData.forEach(function(d){
     prevDay = d.Day;
   }
 });
-
-// show tooltip
-// var tooltip = d3.select("div.tooltip-map");
 
 // initialize map with center position and zoom levels
 var map = L.map("map", {
@@ -54,9 +45,6 @@ map.dragging.enable();
 var mapLayer = L.tileLayer("https://api.mapbox.com/styles/v1/emro/ciyvv7c2n003h2sqvmfffselg/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZW1ybyIsImEiOiJjaXl2dXUzMGQwMDdsMzJuM2s1Nmx1M29yIn0._KtME1k8LIhloMyhMvvCDA",{attribution: '© <a href="https://www.mapbox.com/map-feedback/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> <strong><a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a></strong>'})
 mapLayer.addTo(map);
 
-// L.control.zoom({
-//      position:'topright'
-// }).addTo(map);
 
 // dragging and zooming controls
 map.scrollWheelZoom.disable();
@@ -115,29 +103,7 @@ var drawMap = function(dayData,current_event) {
       } else {
         return d.Size*10;
       }
-    })
-    // .on('mouseover', function(d) {
-    //   console.log("mouseover occuring");
-    //   var html_str = tooltip_function(d);
-    //   tooltip.html(html_str);
-    //   tooltip.style("visibility", "visible");
-    // })
-    // .on("mousemove", function() {
-    //   if (screen.width <= 480) {
-    //     return tooltip
-    //       .style("top", 70+"px")
-    //       .style("left",40+"px");
-    //       // .style("top",(d3.event.pageY+40)+"px")//(d3.event.pageY+40)+"px")
-    //       // .style("left",10+"px");
-    //   } else {
-    //     return tooltip
-    //       .style("top", (d3.event.pageY+10)+"px")
-    //       .style("left",(d3.event.pageX-100)+"px");
-    //   }
-    // })
-    // .on("mouseout", function(){
-    //     return tooltip.style("visibility", "hidden");
-    // });
+    });
 
     map.on("viewreset", update);
     update();
@@ -152,23 +118,7 @@ var drawMap = function(dayData,current_event) {
     )
   }
 
-  // console.log(current_event);
   if (current_event != 101){
-    // var avgLat = 0, avgLon = 0;
-    // if (screen.width <=480) {
-    //   dayData.forEach(function(day){
-    //     avgLat += +day["Lat"];
-    //     avgLon += +day["Lon"];
-    //   });
-    //   avgLat = avgLat/dayData.length-0.1;
-    //   avgLon = avgLon/dayData.length;
-    // } else {
-    //   dayData.forEach(function(day){
-    //     avgLat += +day["Lat"];
-    //   });
-    //   avgLat = avgLat/dayData.length-0.1;
-    //   avgLon = sf_long;
-    // }
     if (screen.width >= 480) {
       map.setView(new L.LatLng(dayData[dayData.length-1]["Lat"], dayData[dayData.length-1]["Lon"]-0.3), map.getZoom(), {"animation": true});
     } else {
@@ -177,7 +127,6 @@ var drawMap = function(dayData,current_event) {
   } else {
     map.setView(new L.LatLng(sf_lat, sf_long), map.getZoom(), {"animation": true});
   }
-  // map.panTo(new L.LatLng(40.737, -73.923));
 
 }
 
@@ -201,7 +150,6 @@ var i; var prevIDX = -1; var prevmapIDX = -1;
 function handleScroll() {
     scrollTimer = null;
 
-  // $(window).scroll(function(){
     var pos = $(this).scrollTop();
     var pos_map_top = $('#bottom-of-top').offset().top;
     var pos_map_bottom = $('#top-of-bottom').offset().top-500;
@@ -221,29 +169,12 @@ function handleScroll() {
             return d.Count <= mapIDX
         });
         drawMap(dayData,+mapIDX);
-        // var x=document.getElementsByClassName("map-panel");
-        // for (i=0; i< x.length; i++) {
-        //   x[i].classList.remove("active");
-        // }
-        // map.classList.add("active");
         document.getElementById("day-box").classList.add("show");
         document.getElementById("display-day").innerText = dayData[dayData.length-1]["Day"];
       }
     });
-    if (pos > pos_map_bottom) {
-      document.getElementById("day-box").classList.remove("show");
-    }
-    // qsa(".day-panel").forEach(function(day,dayIDX) {
-    //   // console.log(day);
-    //   var pos_panel = $('#panel'+days[dayIDX]).offset().top-offset_top;
-    //   if ((pos > pos_panel) && (dayIDX != prevIDX)) {
-    //     prevIDX = dayIDX;
-    //     var x=document.getElementsByClassName("day-panel");
-    //     for (i=0; i< x.length; i++) {
-    //       x[i].classList.remove("active");
-    //     }
-    //     day.classList.add("active");
-    //   }
-    // });
-  // });
+    // don't actually need this because the footer is so huge now
+    // if (pos > pos_map_bottom) {
+    //   document.getElementById("day-box").classList.remove("show");
+    // }
 }
