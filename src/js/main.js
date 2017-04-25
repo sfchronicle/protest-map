@@ -142,7 +142,7 @@ $(window).scroll(function () {
     if (scrollTimer) {
         clearTimeout(scrollTimer);   // clear any previous pending timer
     }
-    scrollTimer = setTimeout(handleScroll, 60);   // set new timer
+    scrollTimer = setTimeout(handleScroll, 50);   // set new timer
 });
 
 var i; var prevIDX = -1; var prevmapIDX = -1;
@@ -152,7 +152,7 @@ function handleScroll() {
 
     var pos = $(this).scrollTop();
     var pos_map_top = $('#bottom-of-top').offset().top;
-    var pos_map_bottom = $('#top-of-bottom').offset().top-500;
+    var pos_map_bottom = $('#top-of-bottom').offset().top-150;
     if (pos < pos_map_top){
       var dayData = protestData.filter(function(d) {
           return d.Day <= 101
@@ -173,8 +173,7 @@ function handleScroll() {
         document.getElementById("display-day").innerText = dayData[dayData.length-1]["Day"];
       }
     });
-    // don't actually need this because the footer is so huge now
-    // if (pos > pos_map_bottom) {
-    //   document.getElementById("day-box").classList.remove("show");
-    // }
+    if (pos > pos_map_bottom) {
+      document.getElementById("day-box").classList.remove("show");
+    }
 }
