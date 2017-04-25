@@ -1,4 +1,5 @@
 @red: #E32B2B;//#3C87CF;
+@dark-red: #c11a1a;
 @gray-blue: #899D9E;
 @dark-gray-blue: #233738;//#3D5152;
 
@@ -35,16 +36,19 @@ body {
   font-size: 18px;
   text-align: center;
   padding-top: 20px;
+  @media @tablet {
+    color: @dark-gray;
+  }
   @media @mobile {
     font-size: 14px;
-    color: @dark-gray;
+    // color: @dark-gray;
   }
   a {
     color: @light-gray;
     &:hover {
       color: white;
     }
-    @media @mobile {
+    @media @tablet {
       color: @dark-gray;
       &.hover {
         color: @light-gray;
@@ -60,7 +64,7 @@ body {
 
 .related-link {
   i {
-    color: @red;
+    color: @dark-red;
   }
   padding-left: 10px;
 }
@@ -94,7 +98,7 @@ circle {
 }
 
 .map-panel {
-  padding-bottom: 500px;
+  padding-bottom: 600px;
 }
 
 // #stick-me {
@@ -112,12 +116,22 @@ circle {
   top: 0;
   z-index: 80;
   text-align: left;
-  width: 40%;
+  width: 50%;
   color: white;
   padding: 30px;
   padding-bottom: 110px;
-  padding-top: 80px;
+  padding-top: 200px;
   padding-left: 50px;
+  @media @laptop {
+    padding-top: 80px;
+    width: 40%;
+  }
+  @media @tablet-horiz {
+    width: 50%;
+  }
+  @media @tablet {
+    width: 60%;
+  }
   @media @mobile {
     width: 100%;
     top: 300px;
@@ -155,9 +169,13 @@ circle {
 
 .protest-box {
   position: relative;
-  width: 40%;
+  width: 35%;
   margin-left: 220px;
   padding-top: 500px;
+  @media @tablet {
+    margin-left: 180px;
+    width: 45%;
+  }
   // margin: auto;
   @media @mobile {
   //   clear: both;
@@ -171,22 +189,22 @@ circle {
     padding-top: 700px;
   }
   text-align: left;
-  font-size: 14px;
-  .day-hed {
-    font-size: 18px;
-    text-align: center;
-    font-family: @boldest-graphics;
-    color: @red;
-    padding: 20px 0;
-    background: rgba(255,255,255,0.7);
-    margin-top: 70px;
-  }
+  font-size: 15px;
+  // .day-hed {
+  //   font-size: 18px;
+  //   text-align: center;
+  //   font-family: @boldest-graphics;
+  //   color: @red;
+  //   padding: 20px 0;
+  //   background: rgba(255,255,255,0.7);
+  //   margin-top: 70px;
+  // }
   .protest-day {
     background: rgba(255,255,255,0.7);
     padding: 20px;
   }
   .protest-name {
-    font-size: 14px;
+    // font-size: 15px;
     font-family: @med-graphics;
     border-bottom: 1px solid black;
   }
@@ -211,8 +229,8 @@ circle {
 #display-day {
   font-size: 40px;
   font-family: @boldest-graphics;
-  color: darken(@red,10%);
-  @media @mobile {
+  color: @dark-red;
+  @media @tablet {
     font-size: 30px;
   }
 }
@@ -230,6 +248,10 @@ circle {
   position: fixed;
   top: 40px;
   left: 20px;
+  @media @tablet {
+    width: 160px;
+    font-size: 25px;
+  }
   @media @mobile {
     width: 100%;
     top: 0;
@@ -282,6 +304,10 @@ circle {
     font-size: 30px;
     max-width: 450px;
     margin: auto;
+    line-height:1.4;
+    @media @tablet {
+      font-size: 25px;
+    }
     @media @mobile {
       font-size: 25px;
     }
@@ -376,7 +402,7 @@ body {
     padding: 0;
     padding-bottom: 15px;
     a {
-      color: @red;
+      color: @dark-red;
     }
   }
   @media @mobile {

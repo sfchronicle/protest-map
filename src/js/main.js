@@ -100,13 +100,13 @@ var drawMap = function(dayData,current_event) {
     })
     .style("opacity", function(d) {
       if ((d.Count == current_event) || (current_event == 100)) {
-        return 0.8;
+        return 0.9;
       } else {
         return 0.3;
       }
     })
     .style("fill", function(d) {
-      return "#E32B2B";//"#3C87CF";
+      return "#c11a1a";//"#E32B2B";//"#3C87CF";
     })
     .style("stroke","#696969")
     .attr("r", function(d) {
