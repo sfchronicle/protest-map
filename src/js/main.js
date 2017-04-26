@@ -14,7 +14,7 @@ if (screen.width <= 480) {
   var sf_long = -122.5;
   var zoom_deg = 10;
 
-  var offset_top = 700;
+  var offset_top = 800;
 }
 
 // making a list of all the days of the presidency (for which we have protests)
@@ -74,7 +74,7 @@ var drawMap = function(dayData,current_event) {
 	g = svg.append("g");
 
   // transition time
-  var duration = 700;
+  // var duration = 700;
 
   // adding circles to the map
   var feature = g.selectAll("circle")
@@ -139,10 +139,11 @@ var qsa = s => Array.prototype.slice.call(document.querySelectorAll(s));
 
 var scrollTimer = null;
 $(window).scroll(function () {
+  // handleScroll();
     if (scrollTimer) {
         clearTimeout(scrollTimer);   // clear any previous pending timer
     }
-    scrollTimer = setTimeout(handleScroll, 50);   // set new timer
+    scrollTimer = setTimeout(handleScroll, 40);   // set new timer
 });
 
 var i; var prevIDX = -1; var prevmapIDX = -1;
@@ -152,7 +153,7 @@ function handleScroll() {
 
     var pos = $(this).scrollTop();
     var pos_map_top = $('#bottom-of-top').offset().top;
-    var pos_map_bottom = $('#top-of-bottom').offset().top-150;
+    var pos_map_bottom = $('#top-of-bottom').offset().top;
     if (pos < pos_map_top){
       var dayData = protestData.filter(function(d) {
           return d.Day <= 101
