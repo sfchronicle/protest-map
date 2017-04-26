@@ -14,7 +14,7 @@ if (screen.width <= 480) {
   var sf_long = -122.5;
   var zoom_deg = 10;
 
-  var offset_top = 600;
+  var offset_top = 700;
 }
 
 // making a list of all the days of the presidency (for which we have protests)
