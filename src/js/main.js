@@ -19,7 +19,7 @@ if (screen.width <= 480) {
   var bottomOffset = 200;
 }
 
-var timeTimeout = 300;
+var timeTimeout = 100;
 
 // making a list of all the days of the presidency (for which we have protests)
 var days = [], dates = [], prevDay = -1;
@@ -36,14 +36,7 @@ var map = L.map("map", {
   minZoom: 7,
   maxZoom: 16,
   zoomControl: false,
-  dragging: true,
-  touchZoom: true
-  // zoomControl: isMobile ? false : true,
-  // scrollWheelZoom: false
 }).setView([sf_lat,sf_long], zoom_deg);;
-// window.map = map;
-
-map.dragging.enable();
 
 // add tiles to the map
 var mapLayer = L.tileLayer("https://api.mapbox.com/styles/v1/emro/ciyvv7c2n003h2sqvmfffselg/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZW1ybyIsImEiOiJjaXl2dXUzMGQwMDdsMzJuM2s1Nmx1M29yIn0._KtME1k8LIhloMyhMvvCDA",{attribution: '© <a href="https://www.mapbox.com/map-feedback/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> <strong><a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a></strong>'})
@@ -58,8 +51,8 @@ map.doubleClickZoom.disable();
 map.keyboard.disable();
 
 // initializing the svg layer
-// L.svg().addTo(map)
-map._initPathRoot();
+L.svg().addTo(map);
+// map._initPathRoot();
 
 // creating Lat/Lon objects that d3 is expecting
 protestData.forEach(function(d,idx) {
@@ -70,7 +63,7 @@ protestData.forEach(function(d,idx) {
 var svg = d3.select("#map").select("svg"),
 g = svg.append("g");
 
-// draw bubbles
+// draw map with dots on it
 var drawMap = function(dayData,current_event) {
 
   console.log("re-drawing the map");
@@ -126,41 +119,51 @@ var drawMap = function(dayData,current_event) {
 
   if (current_event != 101){
     if (screen.width >= 480) {
-      map.setView(new L.LatLng(dayData[dayData.length-1]["Lat"], dayData[dayData.length-1]["Lon"]-0.3), map.getZoom(), {"animation": true});
+      map.panTo(new L.LatLng(dayData[dayData.length-1]["Lat"], dayData[dayData.length-1]["Lon"]-0.3));
+      // map.setView(new L.LatLng(dayData[dayData.length-1]["Lat"], dayData[dayData.length-1]["Lon"]-0.3), map.getZoom(), {"animation": true});
     } else {
-      map.setView(new L.LatLng(dayData[dayData.length-1]["Lat"]-0.3, dayData[dayData.length-1]["Lon"]), map.getZoom(), {"animation": true, duration: timeTimeout});
+      map.panTo(new L.LatLng(dayData[dayData.length-1]["Lat"]-0.3, dayData[dayData.length-1]["Lon"]));
+      // map.setView(new L.LatLng(dayData[dayData.length-1]["Lat"]-0.3, dayData[dayData.length-1]["Lon"]), map.getZoom(), {"animation": true, duration: timeTimeout});
     }
   } else {
-    map.setView(new L.LatLng(sf_lat, sf_long), map.getZoom(), {"animation": true});
+    map.panTo(new L.LatLng(sf_lat, sf_long));
+    // map.setView(new L.LatLng(sf_lat, sf_long), map.getZoom(), {"animation": true});
   }
 
 }
 
+// initialize map with all dots, faded out
 var dayData = protestData.filter(function(d) {
     return d.Day <= 101
 });
 drawMap(dayData,101);
 
-var qsa = s => Array.prototype.slice.call(document.querySelectorAll(s));
+// initial variable, which indicates that map is on landing on load
+var prevmapIDX = -1;
 
+// set up scrolling timeout
 var scrollTimer = null;
-// var scrollTimer = setTimeout(handleScroll, timeTimout);
 $(window).scroll(function () {
-  // handleScroll();
     if (scrollTimer) {
         clearTimeout(scrollTimer);   // clear any previous pending timer
     }
     scrollTimer = setTimeout(handleScroll, timeTimeout);   // set new timer
 });
 
-var i; var prevIDX = -1; var prevmapIDX = -1;
+// look through the days in reverse order
+var days_reverse = days.reverse();
 
+// function for updating with scroll
 function handleScroll() {
+
     scrollTimer = null;
 
+    // figure out where the top of the page is, and also the top and beginning of the map content
     var pos = $(this).scrollTop();
     var pos_map_top = $('#bottom-of-top').offset().top;
     var pos_map_bottom = $('#top-of-bottom').offset().top-bottomOffset;
+
+    // show the landing of the page if the reader is at the top
     if (pos < pos_map_top){
       var dayData = protestData.filter(function(d) {
           return d.Day <= 101
@@ -168,21 +171,27 @@ function handleScroll() {
       drawMap(dayData,101);
       var prevmapIDX = -1;
       document.getElementById("day-box").classList.remove("show");
+
+    // show the appropriate dots if the reader is in the middle of the page
     } else if (pos < pos_map_bottom){
-      qsa(".map-panel").forEach(function(map,mapIDX) {
+
+      var currentIDX = -1;
+      days.forEach(function(map,mapIDX) {
         var pos_map = $('#mapevent'+mapIDX).offset().top-offset_top;
-        if ((pos > pos_map) && (mapIDX != prevmapIDX)) {
-          prevmapIDX = mapIDX;
-          var dayData = protestData.filter(function(d) {
-              return d.Count <= mapIDX
-          });
-          drawMap(dayData,+mapIDX);
-          document.getElementById("day-box").classList.add("show");
-          document.getElementById("display-day").innerText = dayData[dayData.length-1]["Day"];
+        if (pos > pos_map) {
+          currentIDX = Math.max(mapIDX,currentIDX);
         }
       });
+      prevmapIDX = currentIDX;
+      var dayData = protestData.filter(function(d) {
+          return d.Count <= currentIDX
+      });
+      drawMap(dayData,+currentIDX);
+      document.getElementById("day-box").classList.add("show");
+      document.getElementById("display-day").innerText = dayData[dayData.length-1]["Day"];
+
+    // hide the day box if the reader is at the bottom of the page
     } else {
-      console.log("here we are");
       document.getElementById("day-box").classList.remove("show");
     }
 }
