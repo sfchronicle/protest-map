@@ -126,7 +126,7 @@ var drawMap = function(dayData,current_event) {
 
   if (current_event != 101){
     if (screen.width >= 480) {
-      map.setView(new L.LatLng(dayData[dayData.length-1]["Lat"], dayData[dayData.length-1]["Lon"]-0.3), map.getZoom(), {"animation": true});
+      map.setView(new L.LatLng(dayData[dayData.length-1]["Lat"], dayData[dayData.length-1]["Lon"]-0.3), {"animation": true});
     } else {
       map.setView(new L.LatLng(dayData[dayData.length-1]["Lat"]-0.3, dayData[dayData.length-1]["Lon"]), {"animation": true, duration: timeTimeout});
     }
@@ -155,14 +155,6 @@ $(window).scroll(function () {
 
 var i; var prevIDX = -1; var prevmapIDX = -1;
 
-var pos_map_list = [];
-
-qsa(".map-panel").forEach(function(map,mapIDX) {
-  var pos_map = $('#mapevent'+mapIDX).offset().top;
-  pos_map_list.push(pos_map);
-});
-console.log(pos_map_list);
-
 function handleScroll() {
     scrollTimer = null;
 
@@ -176,14 +168,10 @@ function handleScroll() {
       drawMap(dayData,101);
       var prevmapIDX = -1;
       document.getElementById("day-box").classList.remove("show");
-    } else {
+    } else if (pos < pos_map_bottom){
       qsa(".map-panel").forEach(function(map,mapIDX) {
         var pos_map = $('#mapevent'+mapIDX).offset().top-offset_top;
-        if ((pos > pos_map) && (mapIDX) && (mapIDX != prevmapIDX)) {
-          console.log("previous map index");
-          console.log(prevmapIDX);
-          console.log("map index");
-          console.log(mapIDX);
+        if ((pos > pos_map) && (mapIDX != prevmapIDX)) {
           prevmapIDX = mapIDX;
           var dayData = protestData.filter(function(d) {
               return d.Count <= mapIDX
@@ -193,9 +181,7 @@ function handleScroll() {
           document.getElementById("display-day").innerText = dayData[dayData.length-1]["Day"];
         }
       });
-    }
-    if (pos > pos_map_bottom) {
-      console.log("here we are");
+    } else {
       document.getElementById("day-box").classList.remove("show");
     }
 }
