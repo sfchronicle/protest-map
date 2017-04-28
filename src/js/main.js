@@ -152,6 +152,7 @@ $(window).scroll(function () {
 
 // look through the days in reverse order
 var days_reverse = days.reverse();
+console.log(days);
 
 // function for updating with scroll
 function handleScroll() {
@@ -176,12 +177,13 @@ function handleScroll() {
     } else if (pos < pos_map_bottom){
 
       var currentIDX = -1;
-      days.forEach(function(map,mapIDX) {
+      protestData.forEach(function(map,mapIDX) {
         var pos_map = $('#mapevent'+mapIDX).offset().top-offset_top;
         if (pos > pos_map) {
           currentIDX = Math.max(mapIDX,currentIDX);
         }
       });
+      console.log(currentIDX);
       prevmapIDX = currentIDX;
       var dayData = protestData.filter(function(d) {
           return d.Count <= currentIDX
