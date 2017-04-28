@@ -8,14 +8,18 @@ if (screen.width <= 480) {
   var zoom_deg = 9;
 
   var offset_top = 900;
+  var bottomOffset = 100;
 
 } else {
   var sf_lat = 37.6;
   var sf_long = -122.5;
   var zoom_deg = 10;
 
-  var offset_top = 800;
+  var offset_top = 900;
+  var bottomOffset = 200;
 }
+
+var timeTimout = 100;
 
 // making a list of all the days of the presidency (for which we have protests)
 var days = [], dates = [], prevDay = -1;
@@ -138,12 +142,13 @@ drawMap(dayData,101);
 var qsa = s => Array.prototype.slice.call(document.querySelectorAll(s));
 
 var scrollTimer = null;
+// var scrollTimer = setTimeout(handleScroll, timeTimout);
 $(window).scroll(function () {
   // handleScroll();
     if (scrollTimer) {
         clearTimeout(scrollTimer);   // clear any previous pending timer
     }
-    scrollTimer = setTimeout(handleScroll, 40);   // set new timer
+    scrollTimer = setTimeout(handleScroll, timeTimout);   // set new timer
 });
 
 var i; var prevIDX = -1; var prevmapIDX = -1;
@@ -153,7 +158,7 @@ function handleScroll() {
 
     var pos = $(this).scrollTop();
     var pos_map_top = $('#bottom-of-top').offset().top;
-    var pos_map_bottom = $('#top-of-bottom').offset().top;
+    var pos_map_bottom = $('#top-of-bottom').offset().top-bottomOffset;
     if (pos < pos_map_top){
       var dayData = protestData.filter(function(d) {
           return d.Day <= 101
@@ -175,6 +180,7 @@ function handleScroll() {
       }
     });
     if (pos > pos_map_bottom) {
+      console.log("here we are");
       document.getElementById("day-box").classList.remove("show");
     }
 }
