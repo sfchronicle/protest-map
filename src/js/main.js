@@ -19,7 +19,7 @@ if (screen.width <= 480) {
   var bottomOffset = 200;
 }
 
-var timeTimeout = 100;
+var timeTimeout = 10;
 
 // making a list of all the days of the presidency (for which we have protests)
 var days = [], dates = [], prevDay = -1;
@@ -170,6 +170,7 @@ function handleScroll() {
           return d.Day <= 101
       });
       drawMap(dayData,101);
+
       var prevmapIDX = -1;
       document.getElementById("day-box").classList.remove("show");
 
